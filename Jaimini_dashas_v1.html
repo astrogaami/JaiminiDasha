@@ -20,21 +20,30 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#f8faff;--w:#fff;--bd:#e2e8f0;--bm:#cbd5e1;
-  --p:#1e40af;--pl:#dbeafe;--tx:#0f172a;--su:#64748b;
-  --g:#166534;--gl:#dcfce7;--r:#991b1b;--rl:#fee2e2;
-  --a:#92400e;--al:#fef3c7;--fn:'DM Sans',system-ui,sans-serif;
-  /* planet colors */
-  --Su:#b45309;--Mo:#4338ca;--Ma:#b91c1c;--Me:#065f46;
-  --Ju:#9a3412;--Ve:#9d174d;--Sa:#475569;--Ra:#6b21a8;--Ke:#374151;
+  /* White canvas, charcoal ink — colour only where it carries meaning */
+  --bg:#ffffff;--w:#ffffff;--bd:#e6e6e9;--bm:#cfcfd4;
+  --p:#1c1c1f;--pl:#f3f3f5;--tx:#18181b;--su:#6b7280;
+  --g:#3f6212;--gl:#f1f4ea;--r:#9f1239;--rl:#f9edf0;
+  --a:#92510b;--al:#f7f1e6;--fn:'DM Sans',system-ui,sans-serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --blue:#1c1c1f;--blue-lt:#f3f3f5;--blue-md:#d4d4d8;
+  --muted:#6b7280;--bg2:#f6f6f7;--p2:#111113;
+  /* functional accents (subtle) — aspects, current period, argala, virodha */
+  --asp:#3a5bd0;--asp-bg:#eef1fc;--now:#15803d;--now-bg:#ecf7ef;
+  --arg:#15803d;--arg-bg:#edf7f0;--vir:#a1570a;--vir-bg:#faf2e8;
+  --border:#e6e6e9;--bg3:#f7f7f8;
+  /* planet glyphs — uniform charcoal; identity carried by the Su/Mo labels */
+  --Su:#3f3f46;--Mo:#3f3f46;--Ma:#3f3f46;--Me:#3f3f46;
+  --Ju:#3f3f46;--Ve:#3f3f46;--Sa:#3f3f46;--Ra:#3f3f46;--Ke:#3f3f46;
 }
 html,body{height:100%;overflow:hidden}
-body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;line-height:1.4}
+body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;line-height:1.4;
+  display:flex;flex-direction:column;height:100%}
 
 /* ── HEADER ── */
 .hdr{background:var(--w);border-bottom:2px solid var(--p);height:46px;
   display:flex;align-items:center;gap:10px;padding:0 14px;
-  position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(30,64,175,.08);flex-shrink:0}
+  position:sticky;top:0;z-index:100;box-shadow:0 1px 8px rgba(0,0,0,.06);flex-shrink:0}
 .brand{font-size:14px;font-weight:800;color:var(--p);letter-spacing:-.02em;white-space:nowrap}
 .brand small{display:block;font-size:8px;font-weight:600;color:var(--su);text-transform:uppercase;letter-spacing:.08em}
 .hdr-mid{flex:1;display:flex;align-items:center;gap:8px;overflow:hidden}
@@ -51,10 +60,10 @@ body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;l
 .btn-o:hover{border-color:var(--p);color:var(--p);opacity:1}
 
 /* ── APP BODY ── */
-.app{display:flex;height:calc(100vh - 46px);overflow:hidden}
+.app{display:flex;flex:1;min-height:0;overflow:hidden}
 
 /* ── LEFT: charts panel ── */
-.charts-panel{width:296px;min-width:296px;flex-shrink:0;padding:10px 8px 10px 12px;overflow-y:auto;
+.charts-panel{width:340px;min-width:340px;flex-shrink:0;padding:10px 10px 10px 14px;overflow-y:auto;
   border-right:1px solid var(--bd);background:var(--w);display:flex;flex-direction:column;gap:8px}
 .charts-panel::-webkit-scrollbar{width:3px}
 .charts-panel::-webkit-scrollbar-thumb{background:var(--bm)}
@@ -63,12 +72,12 @@ body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;l
 .dasha-panel{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
 /* ── DASHA SELECTOR BAR ── */
-.dasha-bar{display:flex;gap:3px;flex-wrap:wrap;padding:8px 12px;
-  border-bottom:1px solid var(--bd);background:#f8faff;flex-shrink:0}
-.dtab{padding:4px 9px;border-radius:4px;font:600 10px var(--fn);border:1.5px solid var(--bd);
-  background:none;cursor:pointer;color:var(--su);transition:all .12s;white-space:nowrap;letter-spacing:.01em}
-.dtab:hover{border-color:var(--p);color:var(--p)}
-.dtab.on{background:var(--pl);border-color:var(--p);color:var(--p)}
+.dasha-bar{display:flex;gap:4px;flex-wrap:wrap;padding:8px 12px;
+  border-bottom:1px solid var(--bd);background:var(--w);flex-shrink:0}
+.dtab{padding:4px 10px;border-radius:5px;font:700 10.5px var(--fn);border:1px solid var(--bd);
+  background:var(--w);cursor:pointer;color:var(--tx);transition:all .12s;white-space:nowrap;letter-spacing:.01em}
+.dtab:hover{border-color:var(--p)}
+.dtab.on{background:var(--p);border-color:var(--p);color:#fff}
 
 /* ── DASHA CONTENT ── */
 .dasha-content{flex:1;overflow-y:auto;padding:8px 20px}
@@ -79,8 +88,15 @@ body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;l
 .chart-wrap{display:flex;flex-direction:column;align-items:center}
 .clbl{font-size:9px;font-weight:700;color:var(--p);text-align:center;margin-bottom:4px;
   letter-spacing:.04em;text-transform:uppercase}
+/* Varga selector styled as the chart title */
+.varga-title{font:800 13px var(--sans);color:var(--tx);border:1px solid var(--bd);border-radius:7px;
+  background:var(--w);padding:4px 10px;cursor:pointer;outline:none;max-width:215px}
+.varga-title:hover{border-color:var(--p)}
+.varga-title:focus{border-color:var(--p)}
+.chart-clear{padding:3px 8px!important;font-size:13px!important;margin:0!important;line-height:1;color:var(--su)!important}
+.chart-clear:hover{color:var(--tx)!important;border-color:var(--p)!important}
 .si{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);
-  width:272px;height:272px;border:2px solid var(--bm);background:var(--bm);
+  width:308px;height:308px;border:1px solid var(--bd);background:var(--bd);
   gap:1px;border-radius:6px;overflow:hidden;flex-shrink:0}
 /* Named grid areas — fixed South Indian layout */
 .h-Pi{grid-row:1;grid-column:1}.h-Ar{grid-row:1;grid-column:2}
@@ -89,44 +105,136 @@ body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;l
 .h-Cp{grid-row:3;grid-column:1}                .h-Le{grid-row:3;grid-column:4}
 .h-Sg{grid-row:4;grid-column:1}.h-Sc{grid-row:4;grid-column:2}
 .h-Li{grid-row:4;grid-column:3}.h-Vi{grid-row:4;grid-column:4}
-.h-ctr{grid-row:2/4;grid-column:2/4;background:#f0f6ff;display:flex;flex-direction:column;
+.h-ctr{grid-row:2/4;grid-column:2/4;background:var(--w);display:flex;flex-direction:column;
   align-items:center;justify-content:center;padding:6px;text-align:center}
 .hc{background:var(--w);position:relative;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
   padding:8px 2px 2px;min-height:0;gap:1px}
-.hc.lagna-cell{background:#fff8f0;outline:2px solid #e97316;outline-offset:-2px}
-.hc.asp-hi{background:#eff6ff!important;outline:2px solid #3b82f6;outline-offset:-2px}
-.hc.asp-self{background:#f0fdf4!important;outline:2px solid #22c55e;outline-offset:-2px}
-.hc.kara-self{background:#eff6ff!important;outline:2px solid #6366f1;outline-offset:-3px}
-.hc.kara-asp{background:#f5f3ff!important;outline:1px solid #a5b4fc;outline-offset:-1px}
-.hc.kl-cell{background:#fdf4ff!important;outline:2px solid #a855f7;outline-offset:-2px}
-.hc.argala-cell{background:#fffbeb!important}
-.kl-mark{font-size:7px;font-weight:800;color:#7c3aed;display:inline-block;margin:0 1px;line-height:1.3}
-.argala-mark{font-size:7px;font-weight:700;display:inline-block;margin:0 1px;line-height:1.3}
-.sg{position:absolute;top:2px;right:3px;font-size:7px;font-weight:700;color:#c0c8d8;pointer-events:none}
-.ct{font-size:10px;font-weight:800;color:var(--p)}
-.cs{font-size:8px;color:var(--su);line-height:1.4;margin-top:2px}
-/* Planet pills — plain colored text, Horakala style */
-.pp{font-size:11px;font-weight:700;line-height:1.4;cursor:default}
-.pp.as{font-size:9px;font-weight:800;color:#ea580c}
+/* Running Mahadasha / Antara rashi — warm gold, distinct from the cool-blue aspect highlights.
+   No !important, so an aspect click still overrides it and the Clear button restores it. */
+.hc.md-active{background:#fbf3dd}
+.hc.ad-active{background:#f6e6ba}
+.hc.asp-hi{background:var(--asp-bg)!important;outline:1.5px dashed var(--asp);outline-offset:-2px}
+.hc.asp-self{background:var(--asp-bg)!important;outline:2px solid var(--asp);outline-offset:-2px}
+.hc.kara-self{background:var(--asp-bg)!important;outline:2px solid var(--asp);outline-offset:-3px}
+.hc.kara-asp{background:var(--asp-bg)!important;outline:1.5px dashed var(--asp);outline-offset:-1px}
+.hc.kl-cell{background:var(--vir-bg)!important;outline:2px solid var(--vir);outline-offset:-2px}
+.hc.argala-cell{background:var(--arg-bg)!important}
+.kl-mark{font-size:7px;font-weight:800;color:var(--su);display:inline-block;margin:0 1px;line-height:1.3}
+.argala-mark{font-size:7px;font-weight:700;color:var(--su);display:inline-block;margin:0 1px;line-height:1.3}
+.sg{position:absolute;top:2px;right:3px;font-size:7px;font-weight:700;color:#b4b4b8;pointer-events:none}
+.ct{font-size:11px;font-weight:800;color:var(--tx)}
+.cs{font-size:9px;color:var(--su);line-height:1.45;margin-top:2px}
+/* Planet pills — plain charcoal text */
+.pp{font-size:12px;font-weight:700;line-height:1.4;cursor:default;color:var(--tx)}
+.pp.as{font-size:10px;font-weight:800;color:var(--p);letter-spacing:.03em}
 .pp-Su{color:var(--Su)}.pp-Mo{color:var(--Mo)}.pp-Ma{color:var(--Ma)}
 .pp-Me{color:var(--Me)}.pp-Ju{color:var(--Ju)}.pp-Ve{color:var(--Ve)}
 .pp-Sa{color:var(--Sa)}.pp-Ra{color:var(--Ra)}.pp-Ke{color:var(--Ke)}
+/* Arudha padas overlaid in chart cells (D1 only) — pinned to cell bottom */
+.apads{margin-top:auto;display:flex;flex-wrap:wrap;gap:3px;justify-content:center;width:100%;padding-top:1px}
+.apad{font-size:7px;font-weight:800;line-height:1.3;color:var(--su);cursor:pointer}
+.apad:hover{text-decoration:underline;color:var(--tx)}
+.apad.apad-ul{color:var(--tx)}
+.apad.apad-al{color:var(--tx)}
+/* Transient Rashi-Drishti preview on Arudha hover — grey dashed, independent of click state */
+.hc.aspv-self{outline:2px solid var(--asp)!important;outline-offset:-2px;background:var(--asp-bg)!important}
+.hc.aspv-hi{outline:1.5px dashed var(--asp)!important;outline-offset:-2px;background:var(--asp-bg)!important}
+/* Planet degree shown as superscript (D1) */
+.pdeg{font-size:.62em;font-weight:600;opacity:.65;margin-left:.5px;vertical-align:super}
+.pp{cursor:default}
+/* Center toggle: planets ⇄ karakas */
+.ctr-tog{margin-top:5px;font:700 8.5px var(--sans);padding:2px 8px;border-radius:10px;cursor:pointer;
+  background:var(--bg2);color:var(--tx);border:1px solid var(--bd);line-height:1.3}
+.ctr-tog:hover{background:#e8e8ea}
+/* Slightly larger fonts inside the D1 chart for readability */
+/* Shared chart styling — D1 and all divisional charts render identically */
+.si .sg{display:none}
+.si .pp{font-size:14px}
+.si .pp.as{font-size:11px}
+.si .apad{font-size:8.5px}
+.si .ct{font-size:12px}
+.si .cs{font-size:10px}
+/* Rich planet metadata tooltip */
+#ptip{position:fixed;z-index:9999;display:none;max-width:255px;background:var(--w);
+  border:1px solid var(--bd);border-radius:8px;box-shadow:0 8px 28px rgba(20,30,60,.18);
+  padding:9px 11px;font:500 11px/1.55 var(--sans);color:var(--tx);pointer-events:none}
+#ptip .pt-h{font-weight:800;font-size:12px;margin-bottom:5px}
+#ptip .pt-row{display:flex;justify-content:space-between;gap:12px;padding:1px 0}
+#ptip .pt-k{color:var(--su)}
+#ptip .pt-v{font-weight:700;text-align:right}
+/* Jump-to-date/age bar + flash */
+.jbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px;font-size:11px;color:var(--su)}
+.jbar input{font:inherit;padding:3px 6px;border:1px solid var(--bd);border-radius:5px;color:var(--tx);background:var(--w)}
+.jbar input.j-date{width:142px}.jbar input.j-age{width:66px}
+.jbar .jbtn{font:700 11px var(--sans);padding:3px 11px;border-radius:5px;cursor:pointer;background:var(--blue);color:#fff;border:none}
+.jbar .jbtn:hover{opacity:.9}
+.jbar .j-msg{color:#b45309;font-weight:600}
+tr.jump-hi>td{background:#e5e5e8!important;transition:background .4s}
+/* Dasha header: title + inline jump + help on one row */
+.dhead{display:flex;align-items:center;justify-content:space-between;gap:8px 12px;flex-wrap:wrap;
+  padding:5px 2px 6px;border-bottom:1px solid var(--bd);margin-bottom:6px}
+.dhead-l,.dhead-r{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.jbar.inline{margin:0}
+.jbar.inline input.j-date{width:132px}
+/* Settings groove — compact configurables adjacent to the dasha title */
+.groove{display:flex;align-items:center;gap:5px 11px;flex-wrap:wrap;padding:6px 9px;margin-bottom:9px;
+  background:var(--bg2);border:1px solid var(--bd);border-radius:7px}
+.gv{display:inline-flex;align-items:center;gap:4px;font-size:9.5px;color:var(--su)}
+.gv>span{font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.gv select{font:600 11px var(--sans);border:1px solid var(--bd);border-radius:5px;padding:2px 5px;
+  background:var(--w);color:var(--tx);cursor:pointer;max-width:130px}
+.gv select:focus{border-color:var(--blue)}
+.gv.lord select{border-color:var(--bm);background:var(--bg2)}
+.ggear{font:700 10px var(--sans);padding:3px 9px;border-radius:12px;cursor:pointer;line-height:1.3;
+  background:var(--w);color:var(--su);border:1px solid var(--bd)}
+.ggear:hover{border-color:var(--blue);color:var(--blue)}
+.ggear.on{background:var(--blue-lt);color:var(--blue);border-color:var(--blue-md)}
+/* Header global-settings groove (below the header bar) */
+.hgroove{display:flex;align-items:center;gap:6px 13px;flex-wrap:wrap;padding:7px 14px;
+  background:var(--bg2);border-bottom:1px solid var(--bd);flex-shrink:0;z-index:90}
+.hg-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--su);
+  border:1px solid var(--bm);border-radius:4px;padding:2px 8px;background:var(--w)}
+.hg-gear.on{background:var(--p)!important;color:#fff!important;border-color:var(--p)!important}
+/* Multi-column dasha tree (Mahadasha → Antara → Pratyantara → Sookshma) */
+.dcols{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;align-items:flex-start}
+.dcol{flex:1 1 0;min-width:186px;max-width:300px;border:1px solid var(--bd);border-radius:8px;
+  overflow:hidden;display:flex;flex-direction:column;background:var(--w)}
+.dcol-h{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--su);
+  padding:6px 10px;border-bottom:1px solid var(--bd);background:var(--bg2);
+  display:flex;justify-content:space-between;align-items:center}
+.dcol-n{font-weight:700;color:var(--bm)}
+.dcol-body{overflow-y:auto;max-height:64vh}
+.dcol-row{padding:6px 10px;border-bottom:1px solid var(--bd);cursor:pointer;border-left:3px solid transparent}
+.dcol-row:last-child{border-bottom:none}
+.dcol-row:hover{background:var(--bg3)}
+.dcol-row.now{border-left-color:var(--now)}
+.dcol-row.sel{background:var(--asp-bg)}
+.dcol-row .r-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.dcol-row .r-name{font-weight:800;font-size:12px;color:var(--tx)}
+.dcol-row.sel .r-name{color:var(--asp)}
+.dcol-row .r-dur{font-size:10px;font-weight:700;color:var(--su);white-space:nowrap}
+.dcol-row .r-dates{font-size:10px;color:var(--su);margin-top:2px}
+/* Dasha drill-down breadcrumb (legacy) */
+.dcrumb{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-bottom:9px;font-size:11px}
+.dcrumb .crumb{cursor:pointer;color:var(--blue);font-weight:700;padding:2px 9px;border-radius:12px;
+  background:var(--blue-lt);border:1px solid var(--blue-md)}
+.dcrumb .crumb:hover{filter:brightness(.97)}
+.dcrumb .crumb.cur{background:var(--p);color:#fff;border-color:var(--p)}
+.dcrumb .crumb-sep{color:var(--su)}
+.dcrumb .crumb-lvl{margin-left:4px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;color:var(--su)}
+.dt .exp{color:var(--bm);font-size:13px;line-height:1}
+.dt tr:hover .exp{color:var(--p)}
 
 /* ── KARAKAS STRIP (under charts) ── */
-.kstrip{width:272px;margin-top:6px}
-.ks-row{display:flex;flex-wrap:wrap;gap:3px}
-.kbadge{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:3px;
-  font-size:10px;font-weight:700;border:1px solid}
-.kbadge .kname{font-size:9px;font-weight:500;opacity:.7}
-.k-AK {background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}
-.k-AmK{background:#dcfce7;color:#15803d;border-color:#86efac}
-.k-BK {background:#fef9c3;color:#854d0e;border-color:#fde047}
-.k-MK {background:#fce7f3;color:#9d174d;border-color:#f9a8d4}
-.k-PK {background:#dbeafe;color:#1e40af;border-color:#93c5fd}
-.k-GK {background:#fee2e2;color:#991b1b;border-color:#fca5a5}
-.k-DK {background:#cffafe;color:#155e75;border-color:#67e8f9}
-.k-DK2{background:#fdf4ff;color:#701a75;border-color:#e879f9}
+.kstrip{width:308px;margin-top:6px}
+.ks-row{display:flex;flex-wrap:wrap;gap:5px}
+.kbadge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:6px;
+  font-size:11.5px;font-weight:800;border:1px solid}
+.kbadge .kname{font-size:10px;font-weight:600;opacity:.8}
+/* Karaka badges — white, high contrast; AK (soul karaka) carries a subtle accent */
+.k-AK,.k-AmK,.k-BK,.k-MK,.k-PK,.k-GK,.k-DK,.k-DK2{background:var(--w);color:var(--tx);border-color:var(--bm)}
+.k-AK{background:var(--asp-bg);color:var(--asp);border-color:var(--asp)}
 
 /* ── DASHA TABLE ── */
 .info-bar{background:#f0f6ff;border:1px solid var(--pl);border-radius:5px;
@@ -135,57 +243,57 @@ body{font-family:var(--fn);background:var(--bg);color:var(--tx);font-size:13px;l
 table.dt{width:100%;border-collapse:collapse;font-size:12px}
 table.dt th{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
   color:var(--su);text-align:left;padding:6px 14px;border-bottom:2px solid var(--bm);
-  background:#f8faff;white-space:nowrap;position:sticky;top:0;z-index:1}
+  background:var(--bg2);white-space:nowrap;position:sticky;top:0;z-index:1}
 table.dt td:nth-child(2),table.dt th:nth-child(2){min-width:150px}
 table.dt td{padding:5px 14px;border-bottom:1px solid var(--bd);vertical-align:middle}
 table.dt tr:last-child td{border-bottom:none}
-table.dt tr:hover td{background:#fafbff}
-table.dt tr.cur td{background:#eff6ff;border-left:3px solid var(--p)}
+table.dt tr:hover td{background:#fafafa}
+table.dt tr.cur td{background:var(--now-bg);border-left:3px solid var(--now)}
 table.dt tr.cur td:first-child{padding-left:6px}
-table.dt tr.cur-ad td{background:#f0fdf4}
-table.dt tr.drishti-row td{background:#fdf4ff;border-left:3px solid #7c3aed}
+table.dt tr.cur-ad td{background:var(--now-bg)}
+table.dt tr.drishti-row td{background:var(--asp-bg);border-left:3px solid var(--asp)}
 
-/* Sign pills */
-.sp{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:700}
-.movable{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
-.fixed  {background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
-.common {background:#dcfce7;color:#166534;border:1px solid #86efac}
+/* Sign quality shown as plain coloured text (toned down from boxed pills) */
+.sp{display:inline-block;font-size:11px;font-weight:700;background:none;border:none;padding:0}
+.movable{color:var(--tx)}
+.fixed  {color:var(--tx)}
+.common {color:var(--tx)}
 
 /* Antardasha expand */
 .antar-row{display:none}
 .antar-row.open{display:table-row}
 .antar-cell{padding:0!important}
-.antar-inner{padding:4px 8px 6px 24px;background:#f8faff}
+.antar-inner{padding:4px 8px 6px 24px;background:var(--bg2)}
 table.at{width:100%;border-collapse:collapse;font-size:11px}
 table.at td{padding:3px 7px;border-bottom:1px solid var(--bd)}
 table.at tr:last-child td{border-bottom:none}
-table.at tr.cad td{background:#eff6ff;color:#1e40af;font-weight:600}
+table.at tr.cad td{background:#ececee;color:var(--tx);font-weight:600}
 .exp{background:none;border:none;color:var(--su);cursor:pointer;font-size:11px;padding:0}
 .exp:hover{color:var(--p)}
 
-.dim{color:var(--su)}.hi{color:#1e40af;font-weight:600}.nowrap{white-space:nowrap}
+.dim{color:var(--su)}.hi{color:var(--p);font-weight:600}.nowrap{white-space:nowrap}
 .err{background:var(--rl);border:1px solid #fca5a5;color:var(--r);padding:8px 12px;border-radius:5px;font-size:12px;margin:8px 0}
 
 /* ── MODAL ── */
 .mbg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;
-  display:none;align-items:flex-start;justify-content:center;padding-top:44px}
+  display:none;align-items:flex-start;justify-content:center;padding:18px 12px;overflow:auto}
 .mbg.open{display:flex}
 .mw{background:var(--w);border-radius:12px;width:min(680px,96vw);
-  max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.25)}
-.mh{padding:14px 18px 10px;border-bottom:1px solid var(--bd);
+  max-height:calc(100vh - 36px);display:flex;flex-direction:column;box-shadow:0 24px 64px rgba(0,0,0,.25)}
+.mh{padding:11px 18px 9px;border-bottom:1px solid var(--bd);
   display:flex;justify-content:space-between;align-items:flex-start}
 .mh h2{font-size:14px;font-weight:700}
-.mh p{font-size:10px;color:var(--su);margin-top:2px;line-height:1.5}
+.mh p{font-size:10px;color:var(--su);margin-top:2px;line-height:1.45}
 .mx{background:none;border:none;font-size:20px;cursor:pointer;color:var(--su);line-height:1;padding:0 2px}
-.mb{padding:14px 18px;overflow-y:auto;flex:1}
-.mf{padding:10px 18px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mb{padding:12px 18px;overflow-y:auto;flex:1;min-height:0}
+.mf{padding:9px 18px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-shrink:0}
 .mf-left{font-size:11px;color:var(--su)}
 label.lb{display:block;font-size:9px;font-weight:700;text-transform:uppercase;
   letter-spacing:.07em;color:var(--su);margin-bottom:4px}
 .inp{width:100%;border:1.5px solid var(--bd);border-radius:6px;padding:7px 10px;
-  font:13px var(--fn);outline:none;background:#fdfcf9;color:var(--tx)}
-.inp:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(30,64,175,.08)}
-textarea.inp{font-family:'Courier New',monospace;font-size:11px;height:150px;resize:vertical;line-height:1.6}
+  font:13px var(--fn);outline:none;background:var(--w);color:var(--tx)}
+.inp:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(0,0,0,.06)}
+textarea.inp{font-family:'Courier New',monospace;font-size:11px;height:104px;resize:vertical;line-height:1.5}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .toggle-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .tog{padding:4px 10px;border-radius:4px;font:600 11px var(--fn);border:1.5px solid var(--bd);
@@ -207,7 +315,7 @@ textarea.inp{font-family:'Courier New',monospace;font-size:11px;height:150px;res
 .asp-cell{background:var(--w);border:1px solid var(--bd);border-radius:5px;padding:6px 8px}
 .asp-sign{font-size:10px;font-weight:700;color:var(--tx)}
 .asp-type{font-size:9px;margin-bottom:3px}
-.asp-pl{font-size:11px;font-weight:700;color:#1e40af}
+.asp-pl{font-size:11px;font-weight:700;color:var(--p)}
 .asp-targets{font-size:10px;color:var(--su)}
 
 /* chart selector row for multi-chart */
@@ -227,16 +335,16 @@ textarea.inp{font-family:'Courier New',monospace;font-size:11px;height:150px;res
 .drishti-chips{display:flex;gap:4px;flex-wrap:wrap;flex:1;align-items:center}
 .dchip{display:inline-flex;align-items:center;padding:2px 7px;border-radius:10px;
   font:600 10px var(--sans);white-space:nowrap}
-.dchip-self{background:#f0fdf4;color:#166534;border:1px solid #86efac}
-.dchip-karaka{background:#ede9fe;color:#4f46e5;border:1px solid #c4b5fd;font-weight:700}
-.dchip-asp {background:#eff6ff;color:#1e40af;border:1px solid #93c5fd}
-.dchip-arg {background:#dcfce7;color:#166534;border:1px solid #86efac}
-.dchip-arg2{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
-.dchip-vir {background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.dchip-self{background:var(--w);color:var(--tx);border:1px solid var(--bm);font-weight:700}
+.dchip-karaka{background:var(--p);color:#fff;border:1px solid var(--p);font-weight:700}
+.dchip-asp {background:var(--asp-bg);color:var(--asp);border:1px solid var(--asp)}
+.dchip-arg {background:var(--arg-bg);color:var(--arg);border:1px solid var(--arg)}
+.dchip-arg2{background:var(--asp-bg);color:var(--asp);border:1px solid var(--asp)}
+.dchip-vir {background:var(--vir-bg);color:var(--vir);border:1px solid var(--vir)}
 .drishti-close{background:none;border:none;cursor:pointer;color:var(--muted);
   font-size:16px;line-height:1;padding:0 2px;flex-shrink:0}
 .drishti-close:hover{color:var(--tx)}
-table.dt tr.drishti-row td{background:#fdf4ff;border-left:3px solid #7c3aed}
+table.dt tr.drishti-row td{background:var(--asp-bg);border-left:3px solid var(--asp)}
 /* ── CHART VIEW STRIP (left panel, above chart) ── */
 .view-strip{display:flex;align-items:center;gap:5px;width:272px;margin-bottom:6px}
 .view-strip label{font-size:9px;font-weight:700;text-transform:uppercase;
@@ -312,29 +420,35 @@ table.dt tr.drishti-row td{background:#fdf4ff;border-left:3px solid #7c3aed}
 .sf label{display:block;font-size:10px;font-weight:700;text-transform:uppercase;
   letter-spacing:.06em;color:var(--su);margin-bottom:4px}
 .sf input{width:100%;border:1.5px solid var(--bd);border-radius:5px;
-  padding:7px 10px;font:13px var(--sans);outline:none;background:#fdfcf9;color:var(--tx)}
+  padding:7px 10px;font:13px var(--sans);outline:none;background:var(--w);color:var(--tx)}
 .sf input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .sf .hint{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4}
 .settings-foot{padding:10px 16px;border-top:1px solid var(--bd);
   display:flex;justify-content:space-between;align-items:center;gap:8px}
 .settings-foot .lic{font-size:9px;color:var(--muted);line-height:1.6}
 /* ── SPECIAL POINTS REFERENCE TABLE ── */
-.ref-panel{width:272px;margin-top:8px;flex-shrink:0}
-.ref-tabs{display:flex;gap:2px;margin-bottom:5px}
-.ref-tab{flex:1;padding:4px 0;font:600 10px var(--sans);border:1.5px solid var(--bd);
-  background:none;cursor:pointer;color:var(--su);border-radius:4px;transition:all .12s;text-align:center}
-.ref-tab.on{background:var(--blue-lt);border-color:var(--blue);color:var(--blue)}
+.ref-panel{width:308px;margin-top:8px;flex-shrink:0}
+.ref-tabs{display:flex;gap:4px;margin-bottom:5px}
+.ref-tab{flex:1;padding:5px 0;font:700 10.5px var(--sans);border:1px solid var(--bd);
+  background:var(--w);cursor:pointer;color:var(--tx);border-radius:5px;transition:all .12s;text-align:center}
+.ref-tab:hover{border-color:var(--p)}
+.ref-tab.on{background:var(--p);border-color:var(--p);color:#fff}
 .ref-tbl{width:100%;border-collapse:collapse;font-size:11px}
 .ref-tbl th{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;
-  color:var(--muted);padding:4px 7px;border-bottom:1px solid var(--bd);text-align:left;background:var(--bg2)}
-.ref-tbl td{padding:4px 7px;border-bottom:1px solid var(--border);vertical-align:middle;cursor:pointer}
+  color:var(--su);padding:5px 8px;border-bottom:1px solid var(--bm);text-align:left;background:var(--w)}
+.ref-tbl td{padding:6px 8px;border-bottom:1px solid var(--bd);vertical-align:middle;cursor:pointer;background:var(--w)}
+.ref-tbl tr:last-child td{border-bottom:none}
 .ref-tbl tr:hover td{background:var(--bg3)}
-.ref-tbl tr.ref-active td{background:#fdf4ff;border-left:2px solid #7c3aed}
-.ref-tbl tr.ref-active td:first-child{padding-left:5px}
-.ref-code{font:700 10px var(--sans);padding:1px 5px;border-radius:3px;display:inline-block}
+.ref-tbl tr.ref-active td{background:var(--asp-bg);border-left:2px solid var(--asp)}
+.ref-tbl tr.ref-active td:first-child{padding-left:6px}
+.ref-code{font:800 10.5px var(--sans);padding:1px 6px;border-radius:4px;display:inline-block;
+  background:var(--w);color:var(--tx);border:1px solid var(--bm)}
+.ref-sign{font-weight:800;color:var(--tx);white-space:nowrap}
+.ref-desc{color:var(--su);font-size:10.5px;line-height:1.45;white-space:normal}
+.ref-tbl th:nth-child(2),.ref-tbl td:nth-child(2){white-space:nowrap;width:1%}
 .ref-sign{font-weight:600;color:var(--tx);white-space:nowrap}
 .ref-desc{font-size:10px;color:var(--su);line-height:1.3}
-.hc.ref-hi{outline:3px solid #7c3aed!important;outline-offset:-2px;background:#fdf4ff!important}
+.hc.ref-hi{outline:3px solid var(--p)!important;outline-offset:-2px;background:#ececee!important}
 
 /* ── PRINT MODAL ── */
 .print-mbg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:600;
@@ -353,7 +467,7 @@ table.dt tr.drishti-row td{background:#fdf4ff;border-left:3px solid #7c3aed}
 .pr-field{margin-bottom:9px}
 .pr-field label{display:block;font-size:11px;font-weight:600;color:var(--text2);margin-bottom:3px}
 .pr-field input{width:100%;border:1.5px solid var(--bd);border-radius:5px;padding:6px 10px;
-  font:13px var(--sans);outline:none;background:#fdfcf9;color:var(--tx)}
+  font:13px var(--sans);outline:none;background:var(--w);color:var(--tx)}
 .pr-field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .pr-field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:9px}
 .dasha-checks{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
@@ -413,44 +527,22 @@ table.pr-tbl tr.pr-cur td { background: #eff6ff; font-weight: 700; color: #1e40a
     <button class="mx" onclick="closeM()">✕</button>
   </div>
   <div class="mb">
-    <div class="form-row">
-      <div><label class="lb">Chart name</label><input class="inp" id="m-name" placeholder="e.g. Chart A"></div>
-      <div><label class="lb">Date of birth (for dasha timeline)</label><input class="inp" id="m-dob" type="date"></div>
+    <div style="margin-bottom:12px">
+      <label class="lb">Chart name <span style="font-weight:500;color:var(--su)">— parsed from the data, editable</span></label>
+      <input class="inp" id="m-name" placeholder="e.g. Sandeep">
     </div>
-    <label class="lb">JHora planetary data</label>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+      <label class="lb" style="margin:0">JHora planetary data</label>
+      <button type="button" class="btn btn-o" style="font-size:10px;padding:3px 9px" onclick="loadSampleData()" title="Fill with sample chart data">Load sample</button>
+    </div>
     <textarea class="inp" id="m-jhora" spellcheck="false" oninput="livePreview()"
       placeholder="Lagna  14 Li 56' 39.03&#34;&#10;Sun    15 Ta 44' 11.69&#34;&#10;Moon   16 Sc 38' 55.84&#34;&#10;Mars   15 Ar 05' 49.46&#34;&#10;Mercury 3 Ge 52' 33.55&#34;&#10;Jupiter 29 Ge 44' 43.77&#34;&#10;Venus  20 Ge 27' 34.79&#34;&#10;Saturn 17 Pi 59' 05.70&#34;&#10;Rahu    9 Aq 32' 04.62&#34;&#10;Ketu    9 Le 32' 04.62&#34;&#10;Hora Lagna 16 Pi 51' 34.93&#34;"></textarea>
     <div id="pvb"><h3>Parsed — verify before calculating</h3><div class="pvg" id="pvg"></div></div>
-    <span class="tog-label">Karaka method</span>
-    <div class="toggle-row">
-      <button class="tog on" data-field="karakaMethod" data-val="deg" onclick="togM(this)">Degrees first</button>
-      <button class="tog" data-field="karakaMethod" data-val="min" onclick="togM(this)">Minutes first</button>
-    </div>
-    <span class="tog-label">Number of karakas</span>
-    <div class="toggle-row">
-      <button class="tog on" data-field="numKarakas" data-val="7" onclick="togM(this)">7 karakas (classic)</button>
-      <button class="tog" data-field="numKarakas" data-val="8" onclick="togM(this)">8 karakas (with Rahu)</button>
-    </div>
-    <span class="tog-label">Period count direction (per sign)</span>
-    <div class="toggle-row">
-      <button class="tog on" data-field="charaDir" data-val="standard" onclick="togM(this)">Standard (odd fwd / even back)</button>
-      <button class="tog" data-field="charaDir" data-val="all-forward" onclick="togM(this)">All forward</button>
-    </div>
-    <span class="tog-label">Chara Dasha sequence style</span>
-    <div class="toggle-row">
-      <button class="tog on" data-field="charaSeqDir" data-val="always-forward" onclick="togM(this)">KN Rao — always forward</button>
-      <button class="tog" data-field="charaSeqDir" data-val="lagna-parity" onclick="togM(this)">Parasara — odd fwd / even back</button>
-    </div>
-    <span class="tog-label">Own-sign period</span>
-    <div class="toggle-row">
-      <button class="tog on" data-field="ownSignPeriod" data-val="12" onclick="togM(this)">12 years</button>
-      <button class="tog" data-field="ownSignPeriod" data-val="1" onclick="togM(this)">1 year</button>
-    </div>
-    <div style="font-size:11px;color:var(--su);background:#f0f6ff;border:1px solid var(--blue-md);
+    <div style="font-size:11px;color:var(--su);background:var(--bg2);border:1px solid var(--bd);
       border-radius:5px;padding:8px 11px;line-height:1.6;margin-top:4px">
-      <strong style="color:var(--blue)">Two separate controls:</strong><br>
-      <b>Chart View</b> (top of left panel) — switch D1–D60 to <em>display</em> any varga chart.<br>
-      <b>Dasha Basis</b> (above dasha table) — choose which varga's planet positions the <em>dasha math</em> uses.
+      All calculation settings live outside this popup:<br>
+      <b>⚙ Global</b> (header) — Divisional method, Karaka method, Sc/Aq co-lords.<br>
+      <b>⚙ Settings</b> (next to the dasha title) — Dasha basis, Chara direction &amp; sequence, own-sign period.
     </div>
   </div>
   <div class="mf">
@@ -465,7 +557,7 @@ table.pr-tbl tr.pr-cur td { background: #eff6ff; font-weight: 700; color: #1e40a
 
 <!-- HEADER -->
 <header class="hdr">
-  <div class="brand" title="Astrogaami — Open-source Jaimini Dasha Research Tool">✦ Astrogaami <small>Jaimini Dasha Research</small></div>
+  <div class="brand" title="Astrogaami — Open-source Jaimini Dasha Research Tool">✦ Astrogaami <span style="font-weight:600;color:var(--su);font-size:12.5px">| Jaimini Dasha Research</span></div>
   <div class="hdr-mid">
     <!-- Chart switcher tabs live here -->
     <div class="chart-tabs" id="chart-tabs"></div>
@@ -473,9 +565,11 @@ table.pr-tbl tr.pr-cur td { background: #eff6ff; font-weight: 700; color: #1e40a
   <div class="hdr-actions">
     <button class="btn btn-o" onclick="openSettings()" title="Settings" style="padding:5px 10px">&#9881;</button>
     <button class="btn btn-o" onclick="openPrint()" title="Print / Export to PDF" style="padding:5px 10px">&#128424;</button>
+    <button class="btn btn-o hg-gear" id="hg-gear" onclick="toggleHGroove()" title="Global chart settings (divisional, karakas, co-lords)">&#9881; Global</button>
     <button class="btn btn-o" onclick="openM(null)">+ Chart</button>
   </div>
 </header>
+<div class="hgroove" id="hgroove" style="display:none"></div>
 
 <!-- APP BODY -->
 <div class="app">
@@ -489,30 +583,6 @@ table.pr-tbl tr.pr-cur td { background: #eff6ff; font-weight: 700; color: #1e40a
   <!-- RIGHT: dashas -->
   <div class="dasha-panel">
     <div class="dasha-bar" id="dasha-bar"></div>
-    <!-- Dasha Calculation Basis strip — separate from chart display -->
-    <div class="basis-strip">
-      <label>Dasha basis:</label>
-      <select id="basis-sel" onchange="changeBasis(this.value)"
-        title="Which divisional chart positions to use for dasha period calculations">
-        <option value="D1">D1 — Rasi (standard)</option>
-        <option value="D2">D2 — Hora</option>
-        <option value="D3">D3 — Drekkana</option>
-        <option value="D4">D4 — Chaturthamsa</option>
-        <option value="D7">D7 — Saptamsa</option>
-        <option value="D9">D9 — Navamsa</option>
-        <option value="D10">D10 — Dasamsa</option>
-        <option value="D12">D12 — Dwadasamsa</option>
-        <option value="D16">D16 — Shodasamsa</option>
-        <option value="D20">D20 — Vimsamsa</option>
-        <option value="D24">D24 — Chaturvimsamsa</option>
-        <option value="D27">D27 — Bhamsa</option>
-        <option value="D30">D30 — Trimsamsa</option>
-        <option value="D40">D40 — Khavedamsa</option>
-        <option value="D45">D45 — Akshavedamsa</option>
-        <option value="D60">D60 — Shastiamsa</option>
-      </select>
-      <span class="basis-note" id="basis-note">Lords &amp; periods calculated from D1 sign positions</span>
-    </div>
     <div class="drishti-bar" id="drishti-bar">
       <span class="drishti-heading" id="drishti-title">Rashi Drishti</span>
       <div class="drishti-chips" id="drishti-chips"></div>
@@ -668,23 +738,38 @@ const KARAKA_SIG={
 // STATE
 // ════════════════════════════════════════════════════════════
 let charts=[], activeChart=null, activeDasha='chara', chartView='D1', editingId=null;
-let pendingCfg={karakaMethod:'deg',numKarakas:7,charaDir:'standard',charaSeqDir:'always-forward',ownSignPeriod:12,dashaChart:'D1'};
+// App-wide (global) settings — affect the chart display, not just the dasha timeline
+let vargaMethodGlobal='classic';   // divisional chart method (Classic/Traditional vs Cyclic)
+let karakaMethodGlobal='deg';      // chara karaka ranking (degrees vs minutes)
+let numKarakasGlobal=7;            // 7 or 8 karakas
+let scLordGlobal='auto';           // Scorpio co-lord (auto / Mars / Ketu)
+let aqLordGlobal='auto';           // Aquarius co-lord (auto / Saturn / Rahu)
+let pendingCfg={karakaMethod:'deg',numKarakas:7,charaDir:'standard',charaSeqDir:'always-forward',ownSignPeriod:12,dashaChart:'D1',vargaMethod:'classic',scLord:'auto',aqLord:'auto'};
+let chartKarakaView=false; // center toggle: show chara karakas in place of planet glyphs
+let grooveOpen=false;      // dasha settings groove collapsed by default (toggled from the title row)
+// Dasha drill-down: Mahadasha → Antara → Pratyantara → Sookshma (lazy, breadcrumb-navigated)
+let drillPath=[], curLevelNodes=[], curMdBySign={}, lastDrillKey='', curColumns=[];
+// Manual co-lord overrides for Scorpio (Mars/Ketu) & Aquarius (Saturn/Rahu); 'auto' = computed strength
+let CUR_SCLORD='auto', CUR_AQLORD='auto';
 
-const SAMPLE=`Lagna             25 Cp 02' 37.49"
-Sun - MK          12 Ta 31' 23.79"
-Moon - BK         14 Cn 50' 38.06"
-Mars - PK          8 Vi 18' 11.83"
-Mercury (R) - AmK 20 Ta 00' 45.43"
-Jupiter (R) - GK   8 Li 15' 00.54"
-Venus - DK         2 Ar 48' 05.66"
-Saturn (R) - AK   22 Vi 17' 27.04"
-Rahu              20 Ge 18' 33.32"
-Ketu              20 Sg 18' 33.32"
-Hora Lagna         8 Sc 48' 30.26"
-Bhava Lagna       10 Aq 39' 57.03"
-Ghati Lagna        3 Aq 14' 09.98"
-Maandi            13 Pi 22' 50.89"
-Gulika             0 Pi 19' 16.07"`;
+const SAMPLE=`Lagna             27 Cp 53' 24.75"
+Sun - MK          12 Ta 31' 48.14"
+Moon - BK         14 Cn 57' 23.83"
+Mars - PK          8 Vi 18' 16.19"
+Mercury (R) - AmK 20 Ta 00' 35.12"
+Jupiter (R) - GK   8 Li 14' 58.28"
+Venus - DK         2 Ar 48' 34.77"
+Saturn (R) - AK   22 Vi 17' 26.14"
+Rahu              20 Ge 18' 33.90"
+Ketu              20 Sg 18' 33.90"
+Maandi            13 Pi 22' 50.81"
+Gulika             0 Pi 19' 15.98"
+Bhava Lagna       13 Aq 10' 21.24"
+Hora Lagna        13 Sc 48' 54.34"
+Ghati Lagna       15 Aq 44' 33.64"
+
+Date:          May 27, 1982
+C:\\Users\\reach\\Documents\\Jhora\\Sandeep`;
 
 // ════════════════════════════════════════════════════════════
 // MODAL UX
@@ -694,15 +779,15 @@ function openM(id){
   if(id!==null){
     const c=charts.find(x=>x.id===id); if(!c)return;
     document.getElementById('m-name').value=c.name;
-    document.getElementById('m-dob').value=c.dob;
     document.getElementById('m-jhora').value=c.jhora;
     Object.assign(pendingCfg,{karakaMethod:c.karakaMethod,numKarakas:c.numKarakas,
-      charaDir:c.charaDir,ownSignPeriod:c.ownSignPeriod,dashaChart:c.dashaChart});
+      charaDir:c.charaDir,charaSeqDir:c.charaSeqDir||'always-forward',ownSignPeriod:c.ownSignPeriod,
+      dashaChart:c.dashaChart,vargaMethod:c.vargaMethod||'classic',
+      scLord:c.scLord||'auto',aqLord:c.aqLord||'auto'});
   } else {
-    document.getElementById('m-name').value='Chart '+(charts.length+1);
-    document.getElementById('m-dob').value='1985-05-15';
-    document.getElementById('m-jhora').value=charts.length===0?SAMPLE:'';
-    Object.assign(pendingCfg,{karakaMethod:'deg',numKarakas:7,charaDir:'standard',ownSignPeriod:12,dashaChart:'D1'});
+    document.getElementById('m-name').value='';
+    document.getElementById('m-jhora').value='';
+    Object.assign(pendingCfg,{karakaMethod:'deg',numKarakas:7,charaDir:'standard',charaSeqDir:'always-forward',ownSignPeriod:12,dashaChart:'D1',vargaMethod:'classic',scLord:'auto',aqLord:'auto'});
   }
   syncModalToggles(); livePreview();
   document.getElementById('modal').classList.add('open');
@@ -723,9 +808,13 @@ function livePreview(){
   const raw=document.getElementById('m-jhora').value;
   const pv=document.getElementById('pvb');
   if(!raw.trim()){pv.style.display='none';document.getElementById('parse-status').textContent='';return;}
+  // Auto-fill Name from the paste (editable); DOB is parsed, not entered
+  const meta=parseJhoraMeta(raw);
+  const nEl=document.getElementById('m-name');
+  if(meta.name && !nEl.value) nEl.value=meta.name;
   const pos=parseJhora(raw);
   if(pos.error){pv.style.display='none';document.getElementById('parse-status').textContent='Missing: '+pos.error;return;}
-  document.getElementById('parse-status').textContent='Parsed OK';
+  document.getElementById('parse-status').textContent='Parsed OK'+(meta.dob?' · DOB '+meta.dob:' · DOB not found — add a "Date:" line');
   const pg=document.getElementById('pvg'); pg.innerHTML='';
   [['Lagna',pos.Lagna],['Sun',pos.Sun],['Moon',pos.Moon],['Mars',pos.Mars],
    ['Mercury',pos.Mercury],['Jupiter',pos.Jupiter],['Venus',pos.Venus],
@@ -739,10 +828,14 @@ function livePreview(){
 }
 function saveChart(){
   const name=document.getElementById('m-name').value.trim()||'Chart';
-  const dob=document.getElementById('m-dob').value||'1985-01-01';
   const jhora=document.getElementById('m-jhora').value;
   const pos=parseJhora(jhora);
   if(pos.error){alert('Parse error — missing: '+pos.error);return;}
+  // DOB is parsed from the data; keep the existing value when editing and none is found
+  const meta=parseJhoraMeta(jhora);
+  let dob=meta.dob;
+  if(!dob && editingId!==null){ const ex=charts.find(x=>x.id===editingId); dob=ex&&ex.dob; }
+  dob=dob||'1985-01-01';
   const cfg={...pendingCfg};
   if(editingId!==null){
     const c=charts.find(x=>x.id===editingId);
@@ -832,12 +925,17 @@ function navSign(lon){
 //   D60 : from own sign (Shastiamsa)
 //   Other n: generic uniform division from own sign
 // ════════════════════════════════════════════════════════════
-function vargaSign(lon, n){
+// Odd (1-based) sign test for classic varga rules — 0-based: Ar=0 is odd. (Was referenced but never defined.)
+function isOddSign(si){return si%2===0;}
+function vargaSign(lon, n, method){
   lon=((lon%360)+360)%360;
   const si=Math.floor(lon/30)%12;   // rasi sign 0–11
   const w=lon%30;                    // degrees within sign 0–30
   const partSize=30/n;               // degrees per part
   const part=Math.floor(w/partSize); // which part 0..(n-1)
+  // Cyclic (Parivritti): number all 12·n parts continuously from Aries 0°,
+  // cycling Ar→Pi repeatedly. varga sign = (si·n + part) mod 12. (D1 → si, unchanged.)
+  if(method==='cyclic') return (si*n+part)%12;
   let startSign;
 
   switch(n){
@@ -906,11 +1004,11 @@ function vargaSign(lon, n){
 }
 
 // Build a varga chart (array of 12 sign buckets) for any Dn
-function buildVargaChart(pos, n){
+function buildVargaChart(pos, n, method){
   const c=Array.from({length:12},()=>[]);
   for(const p of ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu','Lagna']){
     if(pos[p]===undefined) continue;
-    const si=vargaSign(pos[p],n);
+    const si=vargaSign(pos[p],n,method);
     c[si].push(PA[p]||p.slice(0,2));
   }
   return c;
@@ -974,12 +1072,16 @@ function signStrength(pos,useD9,planetName){
 function lordSign(si,pos,useD9){
   if(DUAL_LORDS[si]){
     const [l1,l2]=DUAL_LORDS[si];
-    const s1=signStrength(pos,useD9,l1);
-    const s2=signStrength(pos,useD9,l2);
-    // Higher composite score wins; exact score tie => higher absolute longitude
+    const ov=si===7?CUR_SCLORD:(si===10?CUR_AQLORD:'auto');
     let winner;
-    if(s1.score!==s2.score) winner=s1.score>s2.score?l1:l2;
-    else winner=s1.lon>=s2.lon?l1:l2;
+    if(ov&&ov!=='auto'){ winner=ov; }
+    else{
+      const s1=signStrength(pos,useD9,l1);
+      const s2=signStrength(pos,useD9,l2);
+      // Higher composite score wins; exact score tie => higher absolute longitude
+      if(s1.score!==s2.score) winner=s1.score>s2.score?l1:l2;
+      else winner=s1.lon>=s2.lon?l1:l2;
+    }
     const lon=pos[winner]; if(lon===undefined) return si;
     return useD9?navSign(lon):Math.floor(lon/30)%12;
   }
@@ -1070,12 +1172,9 @@ function charaPeriod(si,pos,useD9,dir,ownYrs){
   const ls=lordSign(si,pos,useD9);
   if(ls===si) return ownYrs; // lord in own sign → always ownYrs (12 by default)
   const d=(dir==='all-forward')?1:(isOdd(si)?1:-1);
-  let cnt=countTo(si,ls,d);
-  // The "-1 rule" (widely accepted in Parasara/Jaimini schools):
-  // If the count traverses all 12 signs (lord is in the 12th from the sign),
-  // the period is 12 - 1 = 11 years. Own-sign (already handled above) = ownYrs.
-  if(cnt===12) cnt=11;
-  return Math.max(1,Math.min(12,cnt));
+  const cnt=countTo(si,ls,d);        // 1..12 inclusive (own-sign handled above → cnt≥2)
+  // Jaimini "-1 rule": years = count − 1. Adjacent lord → 1 yr; 12th → 11 yrs.
+  return Math.max(1,Math.min(12,cnt-1));
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1101,6 +1200,14 @@ function parseDOB(s){
 }
 function fmtDate(d){
   return d&&!isNaN(d.getTime())?d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'—';
+}
+// Compact duration: 12.33 yrs → "12Y4" (12 years 4 months); whole years → "7Y"; sub-year → "5M".
+function fmtDurYM(years){
+  if(typeof years!=='number'||isNaN(years)) return years;
+  const totM=Math.round(years*12), y=Math.floor(totM/12), m=totM%12;
+  if(y>0&&m>0) return y+'Y'+m;
+  if(y>0) return y+'Y';
+  return m+'M';
 }
 function isNow(s,e){const n=new Date(); return s<=n&&n<e;}
 
@@ -1155,36 +1262,85 @@ function arudhaPada(houseSign,pos,useD9){
   let dist=ls-houseSign; if(dist<=0) dist+=12;
   // Arudha = lord sign + same distance forward
   let arudha=(ls+dist)%12;
-  // Special rule: if arudha falls on house itself, use 10th from it
-  if(arudha===houseSign) arudha=(houseSign+9)%12;
-  // If arudha falls on lord sign, use 4th from lord
-  if(arudha===ls) arudha=(ls+3)%12;
+  // Parasara/BPHS rule: a pada cannot fall in the sign itself (1st) or the 7th
+  // from it. In either case, the 10th sign FROM THE COMPUTED PADA is the pada.
+  //   pada in 1st → 10th from house ; pada in 7th → 4th from house.
+  if(arudha===houseSign || arudha===(houseSign+6)%12) arudha=(arudha+9)%12;
   return arudha;
 }
 
 // ════════════════════════════════════════════════════════════
 // ALL DASHA SYSTEMS
 // ════════════════════════════════════════════════════════════
+// Chara Dasha — Vishamapada direction set (K.N. Rao / JHora).
+// A sign is "Direct" (forward) when its 9th sign (0-based id) is one of
+// Ar,Ta,Ge,Li,Sc,Sg → {0,1,2,6,7,8}. Direct signs: Ar,Le,Vi,Li,Aq,Pi.
+const CH_DIRECT=new Set([0,1,2,6,7,8]);
+
 function dChara(pos,dob,useD9,dir,ownYrs,charaSeq){
-  // charaSeq: 'always-forward' (KN Rao default) or 'lagna-parity' (Parasara/Traditional)
-  let lag=useD9?navSign(pos.Lagna):Math.floor(pos.Lagna/30)%12;
-  // Sc/Aq lagna exception (same as Narayana — sequence from stronger lord's sign)
-  if(DUAL_LORDS[lag]){
-    const [l1,l2]=DUAL_LORDS[lag];
-    const s1=signStrength(pos,useD9,l1), s2=signStrength(pos,useD9,l2);
-    const winner=(s1.score!==s2.score)?(s1.score>s2.score?l1:l2):(s1.lon>=s2.lon?l1:l2);
-    const wLon=pos[winner]; if(wLon!==undefined) lag=useD9?navSign(wLon):Math.floor(wLon/30)%12;
+  // ── Faithful port of the bug-fixed standalone Chara Dasha engine ──
+  // Direction  : Vishamapada — 9th sign in Ar,Ta,Ge,Li,Sc,Sg = Direct (forward),
+  //              i.e. K.N. Rao / JHora. charaDir 'all-forward' forces forward.
+  // Co-lord    : Sc=Mars/Ketu, Aq=Saturn/Rahu →
+  //              Rule 2: lord conjoined with MORE planets wins;
+  //              Rule 1 (single or tied count): higher degree-in-sign wins.
+  // Period     : count sign→lord-sign in that sign's direction, minus 1.
+  //              Own sign → ownYrs (12 default); 12th-sign count → 11.
+  // Sequence   : from Lagna, forward if Lagna Direct else backward
+  //              (charaSeq 'lagna-parity' = Parasara odd-fwd / even-back instead).
+  // Antardasha : 12 equal sub-periods of (MD years) MONTHS each, in the MD
+  //              sign's direction, with the MD sign's own antara placed last.
+  const sgn=p=>useD9?navSign(pos[p]):Math.floor(pos[p]/30)%12; // 0-based sign of a body
+  const degIn=p=>((pos[p]%30)+30)%30;                          // degree within sign, 0–30
+  const fwdOf=si=>(dir==='all-forward')?true:CH_DIRECT.has((si+8)%12); // sign's direction
+  const CH_BODIES=['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu'];
+
+  function lordSignOf(si){
+    const dl=DUAL_LORDS[si];
+    if(!dl) return sgn(SL[si]);
+    const ov=si===7?CUR_SCLORD:(si===10?CUR_AQLORD:'auto');
+    if(ov&&ov!=='auto') return sgn(ov);
+    const [a,b]=dl, sa=sgn(a), sb=sgn(b);
+    let ca=0,cb=0;
+    for(const p of CH_BODIES){
+      if(p===a||p===b||pos[p]===undefined) continue;
+      const s=sgn(p); if(s===sa) ca++; if(s===sb) cb++;
+    }
+    const win=(ca!==cb)?(ca>cb?a:b):(degIn(a)>=degIn(b)?a:b); // Rule 2, then Rule 1
+    return sgn(win);
   }
-  const origLag=useD9?navSign(pos.Lagna):Math.floor(pos.Lagna/30)%12;
-  // Sequence direction
-  let seqDir=1; // KN Rao: always forward
-  if(charaSeq==='lagna-parity') seqDir=isOdd(origLag)?1:-1;
-  const ps=[];
+  function periodOf(si){
+    const ls=lordSignOf(si), fwd=fwdOf(si);
+    const cnt=fwd?((ls-si+12)%12)+1:((si-ls+12)%12)+1; // 1..12 inclusive
+    const y=cnt-1;
+    return y===0?ownYrs:y;
+  }
+  function antarSeq(si){
+    const step=fwdOf(si)?1:-1, r=[]; let c=((si+step)%12+12)%12;
+    for(let i=0;i<11;i++){ r.push(c); c=((c+step)%12+12)%12; }
+    r.push(si); return r; // MD sign's own antara last
+  }
+
+  const lag=sgn('Lagna');
+  const seqFwd=(charaSeq==='lagna-parity')?isOdd(lag):fwdOf(lag);
+  const step=seqFwd?1:-1;
+
+  const start0=parseDOB(dob);
+  const out=[]; let cur=new Date(start0);
   for(let i=0;i<12;i++){
-    const si=((lag+(seqDir*i))%12+12)%12;
-    ps.push({sign:si,years:charaPeriod(si,pos,useD9,dir,ownYrs),label:RF[si]});
+    const si=((lag+step*i)%12+12)%12;
+    const years=periodOf(si);
+    const s=new Date(cur), e=new Date(s); e.setFullYear(e.getFullYear()+years);
+    let ac=new Date(s); const antars=[];
+    for(const asi of antarSeq(si)){
+      const as=new Date(ac), ae=new Date(ac); ae.setMonth(ae.getMonth()+years);
+      antars.push({sign:asi,label:RF[asi],dur:years/12,start:as,end:ae});
+      ac=new Date(ae);
+    }
+    out.push({sign:si,years,label:RF[si],start:s,end:e,antardashas:antars});
+    cur=new Date(e);
   }
-  return buildTimeline(ps,dob,'parity');
+  return out;
 }
 
 function dNarayana(pos,dob,useD9,dir){
@@ -1214,13 +1370,12 @@ function dNarayana(pos,dob,useD9,dir){
     let yrs;
     if(ls===si){ yrs=12; }
     else{
-      let cnt=countTo(si,ls,pd);
-      if(cnt===12) cnt=11; // -1 rule
-      yrs=Math.max(1,Math.min(12,cnt));
+      const cnt=countTo(si,ls,pd); // 1..12 inclusive
+      yrs=Math.max(1,Math.min(12,cnt-1)); // -1 rule
     }
     ps.push({sign:si,years:yrs,label:RF[si]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dSthira(pos,dob,useD9){
@@ -1237,7 +1392,7 @@ function dMandooka(pos,dob,useD9){
   const YM=[7,8,9];
   const offsets=[0,3,6,9,1,4,7,10,2,5,8,11];
   const ps=offsets.map(o=>{const si=(lag+o)%12; return {sign:si,years:YM[si%3],label:RF[si]};});
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dShoola(pos,dob,useD9){
@@ -1250,7 +1405,7 @@ function dShoola(pos,dob,useD9){
   tri.sort((a,b)=>{const d=cnt(b)-cnt(a); return d||tri.indexOf(a)-tri.indexOf(b);});
   const ps=[];
   for(const t of tri) for(let i=0;i<4;i++){const si=(t+i)%12; ps.push({sign:si,years:YM[si%3],label:RF[si]});}
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dTrikona(pos,dob,useD9,karakas){
@@ -1260,7 +1415,7 @@ function dTrikona(pos,dob,useD9,karakas){
   const YM=[7,8,9];
   const ps=[];
   for(let i=0;i<12;i++){const si=(akSi+i)%12; ps.push({sign:si,years:YM[si%3],label:RF[si],extra:'AK: '+RF[akSi]});}
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dBrahma(pos,dob,useD9){
@@ -1268,7 +1423,7 @@ function dBrahma(pos,dob,useD9){
   const start=(lag+7)%12; // 8th from lagna
   const ps=[];
   for(let i=0;i<12;i++) ps.push({sign:(start+i)%12,years:8,label:RF[(start+i)%12]});
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dVarnada(pos,dob,useD9,dir,ownYrs){
@@ -1288,7 +1443,7 @@ function dVarnada(pos,dob,useD9,dir,ownYrs){
     const si=((vlSi+(seqDir*i))%12+12)%12;
     ps.push({sign:si,years:charaPeriod(si,pos,useD9,dir,ownYrs),label:RF[si],extra:'VL: '+RF[vlSi]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dAtmakaraka(pos,dob,useD9,karakas,dir,ownYrs){
@@ -1299,7 +1454,7 @@ function dAtmakaraka(pos,dob,useD9,karakas,dir,ownYrs){
     const si=(akSi+i)%12;
     ps.push({sign:si,years:charaPeriod(si,pos,useD9,dir,ownYrs),label:RF[si],extra:'AK: '+ak.name+' in '+RF[akSi]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dYogardha(pos,dob,useD9,dir,ownYrs){
@@ -1331,7 +1486,7 @@ function dTrikuta(pos,dob,useD9,dir,ownYrs){
     const si=(str+i)%12;
     ps.push({sign:si,years:charaPeriod(si,pos,useD9,dir,ownYrs),label:RF[si],extra:'Start: '+RF[str]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 // Jaimini Rasi Drishti helper (for Drig Dasha and interactive UI)
@@ -1375,7 +1530,7 @@ function dNiryanaShoola(pos,dob,useD9){
   const trines=[t1,t2,t3].sort((a,b)=>{const d=cnt(b)-cnt(a);return d||[t1,t2,t3].indexOf(a)-[t1,t2,t3].indexOf(b);});
   const ps=[];
   for(const t of trines) for(let i=0;i<4;i++){const si=(t+i)%12;ps.push({sign:si,years:YM[si%3],label:RF[si],extra:'Start: '+RF[start]});}
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dDrig(pos,dob,useD9){
@@ -1406,7 +1561,7 @@ function dDrig(pos,dob,useD9){
   for(let i=0;i<12;i++){const s=(lag+i)%12; if(!aspSet.has(s)) remaining.push(s);}
   const ordered=[...aspSigns,...remaining];
   const ps=ordered.map(s=>({sign:s,years:YM[s%3],label:RF[s]}));
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 function dNakshatra(pos,dob){
@@ -1481,7 +1636,7 @@ function dPada(pos,dob,useD9){
     const si=(alSi+i)%12;
     ps.push({sign:si,years:YM[si%3],label:RF[si],extra:'AL: '+RF[alSi]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1498,7 +1653,7 @@ function dUpapada(pos,dob,useD9){
     const si=(ulSi+i)%12;
     ps.push({sign:si,years:YM[si%3],label:RF[si],extra:'UL: '+RF[ulSi]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1547,7 +1702,7 @@ function dMoola(pos,dob,useD9,karakas){
     const si=(startSi+i)%12;
     ps.push({sign:si,years:12,label:RF[si],extra:'Root planet: '+strongest+' in '+RF[startSi]});
   }
-  return buildTimeline(ps,dob,false);
+  return buildTimeline(ps,dob,'parity');
 }
 
 // ════════════════════════════════════════════════════════════
@@ -1555,8 +1710,9 @@ function dMoola(pos,dob,useD9,karakas){
 // ════════════════════════════════════════════════════════════
 function computeChart(c){
   const pos=parseJhora(c.jhora); if(pos.error) return;
+  CUR_SCLORD=scLordGlobal; CUR_AQLORD=aqLordGlobal; // global Sc/Aq co-lord overrides
   const useD9=c.dashaChart==='D9';
-  const karakas=computeKarakas(pos,c.karakaMethod,c.numKarakas);
+  const karakas=computeKarakas(pos,karakaMethodGlobal,numKarakasGlobal);
   const dir=c.charaDir, ownYrs=c.ownSignPeriod;
   // Compute all 12 Arudha Padas
   const lagSi=Math.floor(pos.Lagna/30)%12;
@@ -1655,11 +1811,91 @@ function highlightAspects(si){
   // Show drishti panel
   renderDrishtiBar(si);
 }
+// Clear every highlight on the chart (aspects, karaka, arudha preview, reference, special cells)
+function resetChartHighlights(){
+  clearAspects();
+  document.querySelectorAll('.hc').forEach(el=>el.classList.remove(
+    'aspv-self','aspv-hi','ref-hi','kl-cell','argala-cell'));
+  document.querySelectorAll('.ref-tbl tr.ref-active').forEach(tr=>tr.classList.remove('ref-active'));
+  for(const k in refHiState) refHiState[k]={};
+}
 function clearAspects(){
   lastAspSign=-1; lastKaraSign=-1;
   document.getElementById('drishti-bar').classList.remove('open');
   document.querySelectorAll('.hc').forEach(el=>el.classList.remove('asp-self','asp-hi','kara-self','kara-asp'));
   document.querySelectorAll('tr.drishti-row').forEach(tr=>tr.classList.remove('drishti-row'));
+}
+// Transient Rashi-Drishti preview while hovering an Arudha pada — overlays its own
+// classes so any click-locked highlight (lastAspSign) is left untouched and restored on exit.
+function apadHoverOn(si){
+  const asp=rasiAspects(si);
+  document.querySelectorAll('.hc[data-si]').forEach(el=>{
+    const s=parseInt(el.dataset.si);
+    if(s===si) el.classList.add('aspv-self');
+    else if(asp.includes(s)) el.classList.add('aspv-hi');
+  });
+}
+function apadHoverOff(){
+  document.querySelectorAll('.hc.aspv-self,.hc.aspv-hi').forEach(el=>el.classList.remove('aspv-self','aspv-hi'));
+}
+
+// ── Rich planet metadata tooltip (hover a planet in any chart) ──
+function dignityOf(planet,si){
+  if(EXALT[planet]===si) return {t:'Exalted',c:'#15803d'};
+  if(EXALT[planet]!==undefined && (EXALT[planet]+6)%12===si) return {t:'Debilitated',c:'#b91c1c'};
+  if(SL[si]===planet || (DUAL_LORDS[si]&&DUAL_LORDS[si].includes(planet))) return {t:'Own sign',c:'#0369a1'};
+  return {t:'Neutral',c:'var(--su)'};
+}
+function planetMeta(planet,pos,karakas,isLag){
+  const lon=pos[planet], comp=lonToComp(lon), nk=nakOf(lon), nsi=navSign(lon);
+  const row=(k,v)=>'<div class="pt-row"><span class="pt-k">'+k+'</span><span class="pt-v">'+v+'</span></div>';
+  let r=row('Rashi',RF[comp.si]+' &nbsp;'+comp.d+'\u00b0'+String(comp.m).padStart(2,'0')+"'");
+  r+=row('Nakshatra',NF[nk.idx]+' &nbsp;(pada '+nk.pada+')');
+  r+=row('Nak. lord',NL[nk.idx]);
+  r+=row('Navamsa',RF[nsi]);
+  if(!isLag){
+    const d=dignityOf(planet,comp.si);
+    r+=row('Dignity','<span style="color:'+d.c+'">'+d.t+'</span>');
+    r+=row('Dispositor',SL[comp.si]);
+    const kar=karakas&&karakas.find(k=>k.name===planet);
+    if(kar) r+=row('Chara karaka',kar.karaka+(kar.tied?'*':''));
+  }
+  return '<div class="pt-h">'+(isLag?'Lagna (Ascendant)':planet)+'</div>'+r;
+}
+function ptip(){let t=document.getElementById('ptip'); if(!t){t=document.createElement('div');t.id='ptip';document.body.appendChild(t);} return t;}
+function showPtip(html,x,y){const t=ptip();t.innerHTML=html;t.style.display='block';movePtip(x,y);}
+function movePtip(x,y){const t=document.getElementById('ptip'); if(!t)return; const pad=14,w=t.offsetWidth,h=t.offsetHeight;
+  let nx=x+pad,ny=y+pad; if(nx+w>innerWidth-6)nx=x-w-pad; if(ny+h>innerHeight-6)ny=y-h-pad;
+  t.style.left=Math.max(6,nx)+'px'; t.style.top=Math.max(6,ny)+'px';}
+function hidePtip(){const t=document.getElementById('ptip'); if(t)t.style.display='none';}
+
+// ── Center toggle: swap planet glyphs for their chara karakas ──
+function toggleKarakaView(e){ if(e)e.stopPropagation(); chartKarakaView=!chartKarakaView; renderChartsPanel(); }
+
+// ── Jump to a date or age within the active dasha timeline ──
+function doJump(){
+  const c=charts.find(x=>x.id===activeChart); if(!c||!c.computed) return;
+  const data=c.computed.dashas[activeDasha]; if(!data||!data.length) return;
+  const dEl=document.getElementById('jump-date'), aEl=document.getElementById('jump-age'),
+        msg=document.getElementById('jump-msg');
+  let target=null;
+  if(dEl&&dEl.value) target=parseDOB(dEl.value);
+  else if(aEl&&aEl.value!=='') target=addYears(parseDOB(c.dob),parseFloat(aEl.value)||0);
+  const setMsg=t=>{const m=document.getElementById('jump-msg'); if(m)m.textContent=t;};
+  if(!target){ setMsg('Enter a date or an age.'); return; }
+  const md=data.find(m=>m.start<=target && target<m.end);
+  if(!md){ setMsg('Outside this dasha span ('+fmtDate(data[0].start)+' – '+fmtDate(data[data.length-1].end)+').'); return; }
+  // Build the full chain [MD, AD, PD] that contains the target, so every column points to it
+  curMdBySign={}; data.forEach(m=>{ if(curMdBySign[m.sign]===undefined) curMdBySign[m.sign]=m; });
+  const path=[md];
+  const ad=(md.antardashas||[]).find(a=>a.start<=target && target<a.end);
+  if(ad){ path.push(ad);
+    const pd=dashaChildren(ad.sign,ad.start,ad.end).find(p=>p.start<=target && target<p.end);
+    if(pd) path.push(pd);
+  }
+  drillPath=path;
+  renderDashaContent();
+  setMsg('');
 }
 
 let lastKaraSign=-1;
@@ -1687,12 +1923,12 @@ function renderKarakaDrishtiBar(karakaCode,planetName,si){
     karakaCode+': '+planetName+' in '+RF[si]+' ('+ST[si%3]+') — Rashi Drishti & Argala';
   const asp=rasiAspects(si);
   let c='<span class="dchip dchip-karaka">'+karakaCode+' — '+planetName+'</span>';
-  c+='<span class="dchip dchip-self">'+RS[si]+' ● own</span>';
-  asp.forEach(a=>{c+='<span class="dchip dchip-asp">'+RS[a]+' ▸ asp</span>';});
-  [{s:(si+1)%12,l:'2A',cls:'dchip-arg'},{s:(si+3)%12,l:'4A',cls:'dchip-arg'},
-   {s:(si+10)%12,l:'11A',cls:'dchip-arg'},{s:(si+4)%12,l:'5A',cls:'dchip-arg2'}
+  c+='<span class="dchip dchip-self">'+RS[si]+' · Own</span>';
+  asp.forEach(a=>{c+='<span class="dchip dchip-asp">'+RS[a]+' · Asp</span>';});
+  [{s:(si+1)%12,l:'Arg 2',cls:'dchip-arg'},{s:(si+3)%12,l:'Arg 4',cls:'dchip-arg'},
+   {s:(si+10)%12,l:'Arg 11',cls:'dchip-arg'},{s:(si+4)%12,l:'Arg 5',cls:'dchip-arg2'}
   ].forEach(a=>{c+='<span class="dchip '+a.cls+'">'+RS[a.s]+' '+a.l+'</span>';});
-  [{s:(si+11)%12,l:'12V'},{s:(si+9)%12,l:'10V'},{s:(si+2)%12,l:'3V'}
+  [{s:(si+11)%12,l:'Vir 12'},{s:(si+9)%12,l:'Vir 10'},{s:(si+2)%12,l:'Vir 3'}
   ].forEach(v=>{c+='<span class="dchip dchip-vir">'+RS[v.s]+' '+v.l+'</span>';});
   document.getElementById('drishti-chips').innerHTML=c;
   bar.classList.add('open');
@@ -1701,18 +1937,18 @@ function renderDrishtiBar(si){
   const bar=document.getElementById('drishti-bar');
   document.getElementById('drishti-title').textContent=RF[si]+' ('+ST[si%3]+') — Rashi Drishti & Argala';
   const asp=rasiAspects(si);
-  let c='<span class="dchip dchip-self">'+RS[si]+' ● self</span>';
-  asp.forEach(a=>{c+='<span class="dchip dchip-asp" title="Rashi Drishti aspect">'+RS[a]+' ▸ asp</span>';});
+  let c='<span class="dchip dchip-self">'+RS[si]+' · Self</span>';
+  asp.forEach(a=>{c+='<span class="dchip dchip-asp" title="Rashi Drishti aspect">'+RS[a]+' · Asp</span>';});
   // Argala
-  [{s:(si+1)%12,l:'2A',tip:'2nd Argala — wealth, speech',cls:'dchip-arg'},
-   {s:(si+3)%12,l:'4A',tip:'4th Argala — home, happiness',cls:'dchip-arg'},
-   {s:(si+10)%12,l:'11A',tip:'11th Argala — gains',cls:'dchip-arg'},
-   {s:(si+4)%12,l:'5A',tip:'5th Argala — intellect',cls:'dchip-arg2'}
+  [{s:(si+1)%12,l:'Arg 2',tip:'2nd Argala — wealth, speech',cls:'dchip-arg'},
+   {s:(si+3)%12,l:'Arg 4',tip:'4th Argala — home, happiness',cls:'dchip-arg'},
+   {s:(si+10)%12,l:'Arg 11',tip:'11th Argala — gains',cls:'dchip-arg'},
+   {s:(si+4)%12,l:'Arg 5',tip:'5th Argala — intellect',cls:'dchip-arg2'}
   ].forEach(a=>{c+='<span class="dchip '+a.cls+'" title="'+a.tip+'">'+RS[a.s]+' '+a.l+'</span>';});
   // Virodhargala
-  [{s:(si+11)%12,l:'12V',tip:'12th Virodhargala'},
-   {s:(si+9)%12, l:'10V',tip:'10th Virodhargala'},
-   {s:(si+2)%12, l:'3V', tip:'3rd Virodhargala'}
+  [{s:(si+11)%12,l:'Vir 12',tip:'12th Virodhargala'},
+   {s:(si+9)%12, l:'Vir 10',tip:'10th Virodhargala'},
+   {s:(si+2)%12, l:'Vir 3', tip:'3rd Virodhargala'}
   ].forEach(v=>{c+='<span class="dchip dchip-vir" title="'+v.tip+'">'+RS[v.s]+' '+v.l+'</span>';});
   document.getElementById('drishti-chips').innerHTML=c;
   bar.classList.add('open');
@@ -1734,6 +1970,7 @@ function arudhaFullName(ak){
 }
 
 function renderAll(){
+  renderHeaderGroove();
   renderChartTabs();
   renderChartsPanel();
   renderDashaBar();
@@ -1766,77 +2003,107 @@ const refTabState={};
 // Active ref highlight: {cid: {sign, code}}
 const refHiState={};
 
+// Bhava Arudha padas shown inside the D1 chart (A1=AL … A12=UL).
+const BHAVA_PADAS=['AL','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','UL'];
+const ARUDHA_INFO={AL:'Arudha Lagna — public image, self',A2:'A2 — wealth, assets',
+  A3:'A3 — courage, effort',A4:'A4 — home, property',A5:'A5 — children, intellect',
+  A6:'A6 — enemies, debts',A7:'A7 (Darapada) — spouse, partnership',A8:'A8 — longevity, obstacles',
+  A9:'A9 — father, dharma',A10:'A10 — career, fame',A11:'A11 — gains, income',
+  UL:'Upapada (A12) — marriage, spouse quality'};
+
 function renderChartsPanel(){
   const panel=document.getElementById('charts-panel');
   if(!charts.length){
-    panel.innerHTML='<div style="color:var(--su);font-size:12px;padding:20px 8px;text-align:center;width:252px">Add a chart to begin</div>';
+    panel.innerHTML='<div style="padding:26px 8px;text-align:center;width:300px">'
+      +'<div style="color:var(--su);font-size:12px;margin-bottom:11px">No chart yet</div>'
+      +'<button class="btn" onclick="openM(null)">+ Add a chart</button>'
+      +'<div style="color:var(--su);font-size:10px;margin-top:9px;line-height:1.5">Use <strong>Load sample</strong> inside the popup to try it instantly.</div>'
+      +'</div>';
     return;
   }
   panel.innerHTML='';
-
-  // ── Chart View strip (always at top, above all charts) ──
-  const vStrip=document.createElement('div'); vStrip.className='view-strip';
-  vStrip.innerHTML='<label>View:</label>'
-    +'<select id="varga-sel" onchange="setView(this.value)">'
-    +'<option value="D1">D1 — Rasi</option>'
-    +'<option value="D2">D2 — Hora</option>'
-    +'<option value="D3">D3 — Drekkana</option>'
-    +'<option value="D4">D4 — Chaturthamsa</option>'
-    +'<option value="D7">D7 — Saptamsa</option>'
-    +'<option value="D9">D9 — Navamsa</option>'
-    +'<option value="D10">D10 — Dasamsa</option>'
-    +'<option value="D12">D12 — Dwadasamsa</option>'
-    +'<option value="D16">D16 — Shodasamsa</option>'
-    +'<option value="D20">D20 — Vimsamsa</option>'
-    +'<option value="D24">D24 — Chaturvimsamsa</option>'
-    +'<option value="D27">D27 — Bhamsa</option>'
-    +'<option value="D30">D30 — Trimsamsa</option>'
-    +'<option value="D40">D40 — Khavedamsa</option>'
-    +'<option value="D45">D45 — Akshavedamsa</option>'
-    +'<option value="D60">D60 — Shastiamsa</option>'
-    +'</select>';
-  panel.appendChild(vStrip);
-  // Sync current chartView
-  const vSel=vStrip.querySelector('#varga-sel');
-  if(vSel) vSel.value=chartView;
 
   charts.forEach(c=>{
     if(!c.computed) return;
     // Parse varga number from chartView string (D1, D9, D10, etc.)
     const vargaN=parseInt(chartView.replace('D',''))||1;
     const useD9=vargaN===9; // kept for karaka/dasha compatibility
-    const chart=buildVargaChart(c.computed.pos,vargaN);
-    const lagSi=vargaSign(c.computed.pos.Lagna,vargaN);
+    const vMethod=vargaMethodGlobal;
+    const chart=buildVargaChart(c.computed.pos,vargaN,vMethod);
+    const lagSi=vargaSign(c.computed.pos.Lagna,vargaN,vMethod);
+    const karakaByName={}; c.computed.karakas.forEach(k=>karakaByName[k.name]=k.karaka);
     const cid=c.id;
     const refTab=refTabState[cid]||'lagnas';
     const refHi=refHiState[cid]||{};
 
     const wrap=document.createElement('div'); wrap.className='chart-wrap';
 
-    // Label row
+    // Title row — the varga selector IS the title (saves the old View strip)
     const lbl=document.createElement('div');
-    lbl.style.cssText='display:flex;align-items:center;justify-content:space-between;width:272px;margin-bottom:4px';
+    lbl.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:6px;width:308px;margin-bottom:5px';
     const VARGA_NAMES={D1:'Rasi',D2:'Hora',D3:'Drekkana',D4:'Chaturthamsa',
       D7:'Saptamsa',D9:'Navamsa',D10:'Dasamsa',D12:'Dwadasamsa',D16:'Shodasamsa',
       D20:'Vimsamsa',D24:'Chaturvimsamsa',D27:'Bhamsa',D30:'Trimsamsa',
       D40:'Khavedamsa',D45:'Akshavedamsa',D60:'Shastiamsa'};
-    const vargaLabel=chartView+' — '+(VARGA_NAMES[chartView]||'Custom');
-    lbl.innerHTML='<span class="clbl" style="margin-bottom:0;cursor:help" title="'+VARGA_DESC[chartView]+'">'+esc(c.name)+' \xb7 '+vargaLabel+'</span>'
-      +'<button class="btn btn-o" style="padding:2px 7px;font-size:10px;margin:0" onclick="openM('+cid+')">Edit</button>';
+    const vargaOpts=Object.keys(VARGA_NAMES).map(k=>'<option value="'+k+'"'+(k===chartView?' selected':'')+'>'+k+' — '+VARGA_NAMES[k]+'</option>').join('');
+    lbl.innerHTML='<select class="varga-title" onchange="setView(this.value)" title="'+esc(VARGA_DESC[chartView]||chartView)+'">'+vargaOpts+'</select>'
+      +'<div style="display:flex;gap:5px;flex-shrink:0">'
+        +'<button class="btn btn-o chart-clear" onclick="resetChartHighlights()" title="Clear highlights">&#8635;</button>'
+        +'<button class="btn btn-o" style="padding:2px 8px;font-size:10px;margin:0" onclick="openM('+cid+')">Edit</button>'
+      +'</div>';
     wrap.appendChild(lbl);
 
+    // Running Mahadasha + Antara rashis (for the selected dasha) → subtle fill in the chart
+    let mdActiveSign=-1, adActiveSign=-1;
+    { const dd=c.computed.dashas && c.computed.dashas[activeDasha];
+      if(dd && dd.length){ const now=new Date();
+        const md=dd.find(m=>m.start<=now && now<m.end);
+        if(md){ mdActiveSign=md.sign;
+          const ad=(md.antardashas||[]).find(a=>a.start<=now && now<a.end);
+          if(ad) adActiveSign=ad.sign; } } }
+
     // ── CLEAN SI GRID — planets + lagna only ──
-    const si=document.createElement('div'); si.className='si';
+    const si=document.createElement('div'); si.className='si'+(vargaN===1?' d1':'');
     for(let si2=0;si2<12;si2++){
       const cell=document.createElement('div');
-      cell.className='hc '+SC[si2]+(si2===lagSi?' lagna-cell':'');
+      cell.className='hc '+SC[si2]+(si2===lagSi?' lagna-cell':'')
+        +(si2===mdActiveSign?' md-active':'')+(si2===adActiveSign?' ad-active':'');
       cell.dataset.si=si2;
       const sgSpan=document.createElement('span'); sgSpan.className='sg'; sgSpan.textContent=RS[si2];
       cell.appendChild(sgSpan);
-      if(si2===lagSi){const as=document.createElement('span');as.className='pp as';as.textContent='As';cell.appendChild(as);}
-      (chart[si2]||[]).filter(p=>p!=='As').forEach(p=>{
-        const sp=document.createElement('span'); sp.className='pp pp-'+p; sp.textContent=p; cell.appendChild(sp);
+      // Bodies in this (varga) sign, sorted ascending by longitude = ascending degree-in-sign
+      const bodies=['Lagna','Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn','Rahu','Ketu']
+        .filter(p=>c.computed.pos[p]!==undefined && vargaSign(c.computed.pos[p],vargaN,vMethod)===si2)
+        .sort((a,b)=>c.computed.pos[a]-c.computed.pos[b]);
+      bodies.forEach(p=>{
+        const isLag=p==='Lagna', abbr=isLag?'-Asc-':(PA[p]||p.slice(0,2));
+        const kk=karakaByName[p];
+        const label=(chartKarakaView&&!isLag&&kk)?kk:abbr;
+        const sp=document.createElement('span');
+        sp.className='pp '+(isLag?'as':('pp-'+abbr));
+        sp.textContent=label;
+        if(vargaN===1){ const sup=document.createElement('sup'); sup.className='pdeg';
+          sup.textContent=Math.floor(((c.computed.pos[p]%30)+30)%30); sp.appendChild(sup); }
+        const html=planetMeta(p,c.computed.pos,c.computed.karakas,isLag);
+        sp.addEventListener('mouseenter',e=>showPtip(html,e.clientX,e.clientY));
+        sp.addEventListener('mousemove',e=>movePtip(e.clientX,e.clientY));
+        sp.addEventListener('mouseleave',hidePtip);
+        cell.appendChild(sp);
       });
+      // ── Arudha padas (D1 Rasi only) — pinned to the bottom of the cell ──
+      if(vargaN===1){
+        const am=c.computed.arudhaMaps||{};
+        const here=BHAVA_PADAS.filter(code=>am[code]===si2);
+        if(here.length){
+          const ap=document.createElement('div'); ap.className='apads';
+          ap.innerHTML=here.map(code=>{
+            const cls=code==='UL'?' apad-ul':(code==='AL'?' apad-al':'');
+            return '<span class="apad'+cls+'" title="'+esc(ARUDHA_INFO[code]||code)+' · hover: Rashi Drishti"'
+              +' onmouseenter="apadHoverOn('+si2+')" onmouseleave="apadHoverOff()">'+code+'</span>';
+          }).join('');
+          cell.appendChild(ap);
+        }
+      }
       // ref-hi ring from reference table click
       if(refHi.sign===si2) cell.classList.add('ref-hi');
       si.appendChild(cell);
@@ -1847,9 +2114,11 @@ function renderChartsPanel(){
     // Centre cell — clean
     const ctr=document.createElement('div'); ctr.className='h-ctr';
     const lagComp=lonToComp(c.computed.pos.Lagna);
-    ctr.innerHTML='<span class="ct">'+esc(c.name.substring(0,8))+'</span>'
+    ctr.innerHTML='<span class="ct">'+esc(c.name.substring(0,12))+'</span>'
       +'<span class="cs">'+c.dob+'</span>'
-      +'<span class="cs" style="color:var(--p);font-weight:700">'+RS[lagComp.si]+' '+lagComp.d+'\xb0'+String(lagComp.m).padStart(2,'0')+"'</span>";
+      +'<span class="cs" style="font-weight:700;color:var(--tx)">Lagna '+RF[lagComp.si]+'</span>'
+      +'<button class="ctr-tog" title="Swap planet glyphs for their Chara Karakas" onclick="toggleKarakaView(event)">'
+      +(chartKarakaView?'● Karakas':'○ Karakas')+'</button>';
     si.appendChild(ctr);
     wrap.appendChild(si);
 
@@ -1891,13 +2160,13 @@ function renderChartsPanel(){
     // Show varga description for non-D1 charts
     if(vargaN!==1){
       const vinfo=document.createElement('div');
-      vinfo.style.cssText='font-size:10px;color:var(--su);background:#f8faff;border:1px solid var(--bd);'
+      vinfo.style.cssText='font-size:10px;color:var(--su);background:var(--bg2);border:1px solid var(--bd);'
         +'border-radius:4px;padding:5px 8px;margin-bottom:5px;line-height:1.5';
       vinfo.textContent=VARGA_DESC[chartView]||chartView;
       ref.insertBefore(vinfo,ref.querySelector('.ref-tabs')?ref.querySelector('.ref-tabs').nextSibling:ref.firstChild);
     }
     const tblWrap=document.createElement('div');
-    tblWrap.style.cssText='max-height:210px;overflow-y:auto;border:1px solid var(--bd);border-radius:5px';
+    tblWrap.style.cssText='overflow:hidden';
 
     const rows=[];
     const pos2=c.computed.pos;
@@ -1915,7 +2184,7 @@ function renderChartsPanel(){
         {code:'VL',   color:'#9333ea',bg:'#faf5ff',sign:c.computed.vlSi,         desc:'Vighati Lagna — fine-grained timing'},
         {code:'IL',   color:'#065f46',bg:'#f0fdf4',sign:c.computed.induSi,       desc:'Indu Lagna — comforts, luxury (BPHS)'},
       ];
-      pts.forEach(pt=>{if(pt.sign>=0&&pt.sign!==undefined) rows.push({...pt,signName:RF[pt.sign]});});
+      pts.forEach(pt=>{if(pt.sign>=0&&pt.sign!==undefined) rows.push({...pt,signName:RS[pt.sign]});});
     } else if(refTab==='arudhas'){
       const ACOL={AL:'#5b21b6',A2:'#15803d',A3:'#9a3412',A4:'#1e40af',A5:'#9d174d',
         A6:'#991b1b',A7:'#155e75',A8:'#374151',A9:'#92400e',A10:'#1e40af',
@@ -1927,7 +2196,7 @@ function renderChartsPanel(){
         AKP:'Soul manifesting',AmKP:'Career publicly',PKP:'Guru publicly'};
       Object.entries(am2).forEach(([k,v])=>{
         if(v>=0&&v!==undefined)
-          rows.push({code:k,color:ACOL[k]||'#475569',bg:'#f8faff',sign:v,signName:RF[v],desc:ADESC[k]||k});
+          rows.push({code:k,color:ACOL[k]||'#475569',bg:'#f8faff',sign:v,signName:RS[v],desc:ADESC[k]||k});
       });
     } else {
       const KC3={AK:'#5b21b6',AmK:'#15803d',BK:'#854d0e',MK:'#9d174d',
@@ -1937,7 +2206,7 @@ function renderChartsPanel(){
         const kd=k.name==='Rahu'?(30-p.w):p.w;
         const kd_d=Math.floor(kd),kd_mf=(kd-kd_d)*60,kd_m=Math.floor(kd_mf);
         rows.push({code:k.karaka+(k.tied?'*':''),color:KC3[k.karaka]||'#475569',
-          bg:'#f8faff',sign:p.si,signName:RF[p.si],
+          bg:'#f8faff',sign:p.si,signName:RS[p.si],
           desc:k.name+' '+kd_d+String.fromCharCode(176)+String(kd_m).padStart(2,'0')+"'"});
       });
     }
@@ -1950,7 +2219,7 @@ function renderChartsPanel(){
         :("refRowClick("+cid+","+r.sign+",'"+r.code+"')");
       tblHTML+='<tr class="'+(isAct?'ref-active':'')+'">'
         +'<td onclick="'+rClick+'" style="cursor:pointer">'
-        +'<span class="ref-code" style="background:'+r.bg+';color:'+r.color+';border:1px solid '+r.color+'40">'+esc(r.code)+'</span></td>'
+        +'<span class="ref-code">'+esc(r.code)+'</span></td>'
         +'<td class="ref-sign" onclick="'+rClick+'" style="cursor:pointer">'+esc(r.signName)+'</td>'
         +'<td class="ref-desc">'+esc(r.desc)+'</td></tr>';
     });
@@ -1960,7 +2229,7 @@ function renderChartsPanel(){
     wrap.appendChild(ref);
 
     const hr=document.createElement('div');
-    hr.style.cssText='width:272px;height:1px;background:var(--bd);margin:8px 0';
+    hr.style.cssText='width:308px;height:1px;background:var(--bd);margin:8px 0';
     wrap.appendChild(hr);
     panel.appendChild(wrap);
   });
@@ -1999,7 +2268,7 @@ function refRowClick(cid,sign,code){
 // DASHA BAR & CONTENT
 // ════════════════════════════════════════════════════════════
 const DM=[
-  {key:'chara',      name:'Chara',       desc:'Primary Jaimini — from Lagna, period = count to sign lord. Dual lords for Sc/Aq resolved by sign strength.'},
+  {key:'chara',      name:'Chara',       desc:'Primary Jaimini — from Lagna (Vishamapada direction), period = count to sign lord minus 1. Sc/Aq co-lord by conjunction-count, then degree.'},
   {key:'narayana',   name:'Narayana',    desc:'Mother of Chara. Own-sign=12 yrs. Sequence: odd-lag forward, even-lag backward. Sc/Aq lagna starts from stronger co-lord sign.'},
   {key:'sthira',     name:'Sthira',      desc:'Fixed: Movable=7, Fixed=8, Common=9 years. Best for health and longevity timing.'},
   {key:'mandooka',   name:'Mandooka',    desc:'Frog dasha — sequence: 0,3,6,9,1,4,7,10,2,5,8,11 from Lagna. Preferred for female natives.'},
@@ -2035,7 +2304,9 @@ function renderDashaBar(){
 }
 function selectDasha(key){
   activeDasha=key;
+  drillPath=[];
   document.querySelectorAll('.dtab').forEach((el,i)=>el.classList.toggle('on',DM[i].key===key));
+  renderChartsPanel();   // refresh the running-MD/Antara fills for the newly selected dasha
   renderDashaContent();
 }
 
@@ -2061,63 +2332,86 @@ function renderDashaContent(){
   const n=c.computed.karakas.length;
   const karaka8note=(n===8)?'8-karaka':'7-karaka';
   const basisLabel=c.dashaChart||'D1';
-  // Compact status bar with ? help button — info bar is now the help panel
-  let h='<div style="display:flex;align-items:center;justify-content:space-between;'
-    +'padding:5px 2px 7px;border-bottom:1px solid var(--bd);margin-bottom:8px">'
-    +'<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'
-    +'<span style="font-size:12px;font-weight:700;color:var(--tx)">'+meta.name+' Dasha</span>'
-    +'<span style="font-size:10px;color:var(--su)">'+karaka8note
-    +' &nbsp;·&nbsp; <strong>'+basisLabel+'</strong>'
-    +(hasAntar?' &nbsp;·&nbsp; ▸ expand ADs':'')
-    +'</span>'
+  // ── Dasha title + inline jump + Help (one row) ──
+  let h='<div class="dhead">'
+    +'<div class="dhead-l">'
+    +'<span style="font-size:13px;font-weight:700;color:var(--tx)">'+meta.name+' Dasha</span>'
+    +'<button id="groove-gear" class="ggear'+(grooveOpen?' on':'')+'" onclick="toggleGroove()" title="Dasha settings">&#9881; Settings</button>'
+    +'<span style="font-size:10px;color:var(--su)">'+karaka8note+(hasAntar?' &nbsp;·&nbsp; ▸ expand ADs':'')+'</span>'
     +'</div>'
+    +'<div class="dhead-r">'
+    +'<span class="jbar inline">'
+      +'<span>Jump</span>'
+      +'<input type="date" id="jump-date" class="j-date" title="Jump to this date">'
+      +'<input type="number" id="jump-age" class="j-age" min="0" step="1" placeholder="age" title="Jump to this age">'
+      +'<button class="jbtn" onclick="doJump()">Go</button>'
+      +'<button class="jbtn" style="background:var(--now)" onclick="resetToNow()" title="Back to the running period">Now</button>'
+      +'<span class="j-msg" id="jump-msg"></span>'
+    +'</span>'
     +'<button data-key="'+activeDasha+'" onclick="openHelp(this.dataset.key)" '
     +'style="display:flex;align-items:center;gap:4px;padding:4px 10px;border:1.5px solid var(--blue-md);'
     +'background:var(--blue-lt);color:var(--blue);border-radius:5px;cursor:pointer;'
-    +'font:600 11px var(--sans);flex-shrink:0" title="Learn about this dasha">'
-    +'&#63; Help</button>'
+    +'font:600 11px var(--sans);flex-shrink:0" title="Learn about this dasha">&#63; Help</button>'
+    +'</div>'
     +'</div>';
 
-  h+='<table class="dt"><thead><tr>'
-    +'<th>#</th><th>Mahadasha</th><th>Sign</th><th>Yrs</th><th>Start</th><th>End</th>'
-    +(hasAntar?'<th></th>':'')+'</tr></thead><tbody>';
+  // ── Settings groove — all dasha configurables, live ──
+  const gc=c, cfgSel=(f,lbl,cur,opts,cls)=>
+    '<label class="gv'+(cls?' '+cls:'')+'" title="'+lbl+'"><span>'+lbl+'</span>'
+    +'<select onchange="setCfg(\''+f+'\',this.value)">'
+    +opts.map(o=>'<option value="'+o[0]+'"'+(String(cur)===String(o[0])?' selected':'')+'>'+o[1]+'</option>').join('')
+    +'</select></label>';
+  const BASIS_OPTS=[['D1','D1 Rasi'],['D2','D2 Hora'],['D3','D3 Drekkana'],['D4','D4 Chaturthamsa'],
+    ['D7','D7 Saptamsa'],['D9','D9 Navamsa'],['D10','D10 Dasamsa'],['D12','D12 Dwadasamsa'],
+    ['D16','D16 Shodasamsa'],['D20','D20 Vimsamsa'],['D24','D24 Chaturvimsamsa'],['D27','D27 Bhamsa'],
+    ['D30','D30 Trimsamsa'],['D40','D40 Khavedamsa'],['D45','D45 Akshavedamsa'],['D60','D60 Shastiamsa']];
+  h+='<div class="groove" id="dgroove" style="display:'+(grooveOpen?'flex':'none')+'">'
+    +cfgSel('dashaChart','Basis',gc.dashaChart||'D1',BASIS_OPTS)
+    +cfgSel('charaDir','Count dir',gc.charaDir||'standard',[['standard','Vishamapada'],['all-forward','All forward']])
+    +cfgSel('charaSeqDir','Sequence',gc.charaSeqDir||'always-forward',[['always-forward','KN Rao'],['lagna-parity','Parasara']])
+    +cfgSel('ownSignPeriod','Own yrs',gc.ownSignPeriod||12,[[12,'12'],[1,'1']])
+    +'</div>';
 
-  data.forEach((md,i)=>{
-    const cur=isNow(md.start,md.end);
-    const tc=ST[(md.sign||0)%3].toLowerCase();
-    h+='<tr class="'+(cur?'cur':'')+'" data-asp="'+md.sign+'" onclick="highlightAspects('+md.sign+')" style="cursor:pointer" title="Click row → Rashi Drishti &amp; Argala">'
-      +'<td class="dim">'+( i+1)+'</td>'
-      +'<td><strong>'+esc(md.label||RF[md.sign])+'</strong>'
-        +(md.extra?'<div style="font-size:10px;color:var(--su)">'+esc(md.extra)+'</div>':'')+'</td>'
-      +'<td><span class="sp '+tc+'">'+RS[md.sign]+'</span></td>'
-      +'<td>'+(typeof md.years==='number'?md.years.toFixed(2):md.years)+'</td>'
-      +'<td class="nowrap">'+fmtDate(md.start)+'</td>'
-      +'<td class="nowrap">'+fmtDate(md.end)+'</td>'
-      +(hasAntar?'<td><button class="exp" onclick="toggleAD(this,'+i+')">&#9658;</button></td>':'')
-      +'</tr>';
-    if(hasAntar&&md.antardashas.length){
-      h+='<tr class="antar-row" id="ad-'+i+'"><td colspan="7" class="antar-cell"><div class="antar-inner">'
-        +'<table class="at"><tr><th>Antardasha</th><th>Sign</th><th>Dur</th><th>Start</th><th>End</th></tr>'
-        +md.antardashas.map(a=>{
-          const ca=isNow(a.start,a.end);
-          const atc=ST[(a.sign||0)%3].toLowerCase();
-          return '<tr class="'+(ca?'cad':'')+'" data-asp="'+a.sign+'" onclick="highlightAspects('+a.sign+')" style="cursor:pointer" title="Click row → Rashi Drishti &amp; Argala">'
-            +'<td>'+esc(a.label)+'</td>'
-            +'<td><span class="sp '+atc+'">'+RS[a.sign]+'</span></td>'
-            +'<td>'+(a.dur?a.dur.toFixed(2):'')+'</td>'
-            +'<td class="nowrap">'+fmtDate(a.start)+'</td>'
-            +'<td class="nowrap">'+fmtDate(a.end)+'</td></tr>';
-        }).join('')
-        +'</table></div></td></tr>';
-    }
+  // ── Multi-column tree: reset on chart/dasha change; default to the running chain ──
+  const dkey=String(activeChart)+':'+activeDasha;
+  if(dkey!==lastDrillKey){ drillPath=[]; lastDrillKey=dkey; }
+  curMdBySign={}; data.forEach(md=>{ if(curMdBySign[md.sign]===undefined) curMdBySign[md.sign]=md; });
+  drillPath=drillPath.filter(n=>curMdBySign[n.sign]); // drop stale nodes
+  if(drillPath.length===0) drillPath=buildRunningPath(data); // default view = currently-running chain
+
+  const LEVELS=['Mahadasha','Antara','Pratyantara','Sookshma'];
+  const cols=[{level:LEVELS[0],nodes:data}];
+  for(let i=0;i<drillPath.length && i<3;i++){
+    const kids=dashaChildren(drillPath[i].sign,drillPath[i].start,drillPath[i].end);
+    if(!kids.length) break;
+    cols.push({level:LEVELS[i+1],nodes:kids});
+  }
+  curColumns=cols;
+  const same=(a,b)=>a&&b&&a.sign===b.sign&&+a.start===+b.start;
+
+  h+='<div class="dcols">';
+  cols.forEach((col,ci)=>{
+    const selNode=drillPath[ci];
+    h+='<div class="dcol"><div class="dcol-h">'+col.level+'<span class="dcol-n">'+col.nodes.length+'</span></div>'
+      +'<div class="dcol-body">';
+    col.nodes.forEach((nd,ri)=>{
+      const sel=same(nd,selNode), now=isNow(nd.start,nd.end);
+      const period=(nd.years!=null?nd.years:nd.dur);
+      h+='<div class="dcol-row'+(sel?' sel':'')+(now?' now':'')+'" onclick="colSelect('+ci+','+ri+')">'
+        +'<div class="r-top"><span class="r-name">'+esc(nd.label||RF[nd.sign])+'</span>'
+          +'<span class="r-dur">'+fmtDur(period)+'</span></div>'
+        +'<div class="r-dates">'+fmtDate(nd.start)+' \u2013 '+fmtDate(nd.end)+'</div>'
+        +'</div>';
+    });
+    h+='</div></div>';
   });
-  h+='</tbody></table>';
+  h+='</div>';
   cont.innerHTML=h;
-  // Auto-scroll to current period
-  setTimeout(()=>{
-    const cur=cont.querySelector('tr.cur');
-    if(cur) cur.scrollIntoView({block:'center',behavior:'smooth'});
-  },80);
+  // Scroll each column to its selected (else running) row — within the column only
+  setTimeout(()=>{ cont.querySelectorAll('.dcol-body').forEach(body=>{
+    const r=body.querySelector('.dcol-row.sel')||body.querySelector('.dcol-row.now');
+    if(r) body.scrollTop=Math.max(0,r.offsetTop-body.clientHeight/2+r.clientHeight/2);
+  }); },50);
 }
 
 function toggleAD(btn,i){
@@ -2133,12 +2427,13 @@ function toggleAD(btn,i){
 const DASHA_HELP={
   chara:{
     category:'Core Jaimini',
-    what:`Chara Dasha ("moving" or "mutable" dasha) is the primary dasha system of Jaimini astrology. It is a Rasi (sign-based) dasha — unlike Vimsottari which is planet-based. Each sign gets a period between 1 and 12 years determined by counting from the sign to its lord.`,
+    what:`Chara Dasha ("moving" or "mutable" dasha) is the primary dasha system of Jaimini astrology. It is a Rasi (sign-based) dasha — unlike Vimsottari which is planet-based. Each sign gets a period between 1 and 12 years, found by counting from the sign to its lord in that sign's direction and subtracting one.`,
     how:`
-      <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Start sign:</strong> Always the Lagna sign (unless Sc/Aq, which starts from the stronger co-lord's sign).</div></div>
-      <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Direction:</strong> Odd signs (Ar,Ge,Le,Li,Sg,Aq) count forward; even signs (Ta,Cn,Vi,Sc,Cp,Pi) count backward to the sign's lord.</div></div>
-      <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Period:</strong> The count from sign to its lord = years. Scorpio and Aquarius use the stronger of two co-lords (Mars/Ketu and Saturn/Rahu respectively).</div></div>
-      <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Exception:</strong> If lord is in own sign → 12 years. If lord is in the 12th from the sign → 11 years (minus-1 rule).</div></div>
+      <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Start &amp; sequence:</strong> Begin at the Lagna sign. Proceed forward if the Lagna is Direct, backward if Indirect (Vishamapada — K.N. Rao / JHora). The Parasara option uses Lagna odd/even parity instead.</div></div>
+      <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Direction (Vishamapada):</strong> A sign is Direct (counts forward) when its 9th sign is Ar,Ta,Ge,Li,Sc or Sg. Direct signs: <em>Ar,Le,Vi,Li,Aq,Pi</em>; Indirect (backward): <em>Ta,Ge,Cn,Sc,Sg,Cp</em>.</div></div>
+      <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Co-lord (Sc/Aq):</strong> Scorpio (Mars/Ketu) and Aquarius (Saturn/Rahu) — Rule 2: the lord conjoined with <strong>more planets</strong> wins. Rule 1 (single or equal count): the lord with the <strong>higher degree in its sign</strong> wins.</div></div>
+      <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Period:</strong> Count from the sign to its lord's sign, <strong>minus one</strong>. Lord in own sign → 12 years (own-sign setting); lord in the 12th → 11 years.</div></div>
+      <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Antardasha:</strong> 12 equal sub-periods of (Mahadasha years) <strong>months</strong> each, running in the Mahadasha sign's direction, with the Mahadasha sign's own antara placed last.</div></div>
     `,
     look:[
       'Which sign is the current Mahadasha? Check which house it falls from Lagna — that house theme dominates.',
@@ -2507,7 +2802,8 @@ function openHelp(key){
       +'Karaka method: '+(c.karakaMethod==='deg'?'degrees first':'minutes first')+'<br>'
       +'Chara direction: '+(c.charaDir==='standard'?'Standard (odd fwd/even back)':'All forward')+'<br>'
       +'Own-sign period: '+c.ownSignPeriod+' years &nbsp;·&nbsp; '
-      +'Chara sequence: '+(c.charaSeqDir==='always-forward'?'KN Rao (always forward)':'Parasara (lagna parity)')
+      +'Chara sequence: '+(c.charaSeqDir==='always-forward'?'KN Rao (Vishamapada)':'Parasara (lagna parity)')+'<br>'
+      +'Divisional charts: '+(vargaMethodGlobal==='cyclic'?'Cyclic (Parivritti)':'Classic / Traditional (Parasara)')
       +'</p></div>';
   }
   document.getElementById('help-body').innerHTML=body;
@@ -2536,9 +2832,105 @@ const VARGA_BASIS_DESC={
   D45:'D45 Akshavedamsa — paternal legacy timing.',
   D60:'D60 Shastiamsa — deep karmic event timing.',
 };
+// Show/hide the settings groove in place (no recompute, keeps scroll position)
+function toggleGroove(){
+  grooveOpen=!grooveOpen;
+  const g=document.getElementById('dgroove'); if(g) g.style.display=grooveOpen?'flex':'none';
+  const b=document.getElementById('groove-gear'); if(b) b.classList.toggle('on',grooveOpen);
+}
+// Compact duration that scales down to days/hours for deep sub-periods.
+function fmtDur(y){
+  if(typeof y!=='number'||isNaN(y)) return y||'';
+  if(y>=1){ const Y=Math.floor(y+1e-9), M=Math.round((y-Y)*12); return M>=12?(Y+1)+'Y':(M>0?Y+'Y'+M:Y+'Y'); }
+  const months=y*12;
+  if(months>=1){ const M=Math.floor(months+1e-9), D=Math.round((months-M)*30.44); return D>0?M+'M'+D:M+'M'; }
+  const days=Math.round(y*365.25);
+  return days>=1?days+'D':Math.max(1,Math.round(y*8766))+'h';
+}
+// Recursive sub-periods: a period of sign S is divided using the SAME antardasha
+// pattern (sign sequence + relative weights) that sign S's Mahadasha uses — so the
+// method (equal for Chara, proportional for the rest) and direction carry down every level.
+function dashaChildren(sign,s,e){
+  const md=curMdBySign[sign];
+  if(!md||!md.antardashas||!md.antardashas.length) return [];
+  const pat=md.antardashas, wsum=pat.reduce((a,p)=>a+(p.dur>0?p.dur:1),0);
+  const span=e.getTime()-s.getTime(); let t=s.getTime(); const out=[];
+  for(const p of pat){
+    const w=(p.dur>0?p.dur:1), d=span*(w/wsum);
+    const cs=new Date(t), ce=new Date(t+d); t+=d;
+    out.push({sign:p.sign,label:RF[p.sign],start:cs,end:ce,dur:(ce-cs)/31557600000});
+  }
+  return out;
+}
+// The currently-running chain [Mahadasha, Antara, Pratyantara] for a dasha's data
+function buildRunningPath(data){
+  const now=new Date(), path=[];
+  const md=data.find(m=>m.start<=now && now<m.end); if(!md) return [];
+  path.push(md);
+  const ad=(md.antardashas||[]).find(a=>a.start<=now && now<a.end); if(!ad) return path;
+  path.push(ad);
+  const pd=dashaChildren(ad.sign,ad.start,ad.end).find(p=>p.start<=now && now<p.end);
+  if(pd) path.push(pd);
+  return path;
+}
+// Click a period in column ci → select it (open its sub-periods in the next column) + show its aspects
+function colSelect(ci,ri){
+  const col=curColumns[ci]; if(!col) return;
+  const nd=col.nodes[ri]; if(!nd) return;
+  highlightAspects(nd.sign);
+  drillPath=drillPath.slice(0,ci).concat([nd]);
+  renderDashaContent();
+}
+// Return the tree to the currently-running chain
+function resetToNow(){ drillPath=[]; renderDashaContent(); }
+
+// Live-apply any dasha configurable from the settings groove
+function setCfg(field,val){
+  if(field==='vargaMethod'){ vargaMethodGlobal=val; renderChartsPanel(); return; } // app-wide, display-only
+  if(!activeChart) return;
+  const c=charts.find(x=>x.id===activeChart); if(!c) return;
+  c[field]=(field==='numKarakas'||field==='ownSignPeriod')?parseInt(val,10):val;
+  pendingCfg[field]=c[field]; // keep the chart-edit modal in sync
+  drillPath=[]; // periods change → reset drill
+  computeChart(c);
+  renderAll();
+}
+
+// ── Global (header-groove) settings — affect the whole chart display, not just a dasha ──
+function setGlobalCfg(field,val){
+  if(field==='vargaMethod') vargaMethodGlobal=val;
+  else if(field==='karakaMethod') karakaMethodGlobal=val;
+  else if(field==='numKarakas') numKarakasGlobal=parseInt(val,10);
+  else if(field==='scLord') scLordGlobal=val;
+  else if(field==='aqLord') aqLordGlobal=val;
+  if(field!=='vargaMethod') charts.forEach(c=>computeChart(c)); // karaka/co-lord changes → recompute
+  drillPath=[];
+  renderAll();
+}
+function toggleHGroove(){
+  const g=document.getElementById('hgroove'); if(!g) return;
+  const open=(g.style.display==='none'||!g.style.display);
+  g.style.display=open?'flex':'none';
+  const b=document.getElementById('hg-gear'); if(b) b.classList.toggle('on',open);
+}
+function renderHeaderGroove(){
+  const g=document.getElementById('hgroove'); if(!g) return;
+  const sel=(f,lbl,cur,opts,cls)=>
+    '<label class="gv'+(cls?' '+cls:'')+'" title="'+lbl+'"><span>'+lbl+'</span>'
+    +'<select onchange="setGlobalCfg(\''+f+'\',this.value)">'
+    +opts.map(o=>'<option value="'+o[0]+'"'+(String(cur)===String(o[0])?' selected':'')+'>'+o[1]+'</option>').join('')
+    +'</select></label>';
+  g.innerHTML='<span class="hg-lbl">Global</span>'
+    +sel('vargaMethod','Divisional',vargaMethodGlobal,[['classic','Classic'],['cyclic','Cyclic']])
+    +sel('karakaMethod','Karaka',karakaMethodGlobal,[['deg','Degrees'],['min','Minutes']])
+    +sel('numKarakas','# Kar',numKarakasGlobal,[[7,'7'],[8,'8 (+Rahu)']])
+    +sel('scLord','Sc lord',scLordGlobal,[['auto','Auto'],['Mars','Mars'],['Ketu','Ketu']],'lord')
+    +sel('aqLord','Aq lord',aqLordGlobal,[['auto','Auto'],['Saturn','Saturn'],['Rahu','Rahu']],'lord');
+}
 function changeBasis(val){
   if(!activeChart) return;
   const c=charts.find(x=>x.id===activeChart); if(!c) return;
+  drillPath=[]; // periods change → reset drill
   // Update dashaChart on the chart object and recompute
   c.dashaChart=val;
   // Update the pending modal config so it stays in sync
@@ -2673,14 +3065,14 @@ function doPrint(){
     html2+=`<div class="pr-dasha-section">
       <div class="pr-dasha-title">${meta.name} Dasha</div>
       <div class="pr-dasha-desc">${meta.desc}</div>
-      <table class="pr-tbl"><thead><tr><th>#</th><th>Mahadasha</th><th>Sign</th><th>Yrs</th><th>Start</th><th>End</th></tr></thead><tbody>`;
+      <table class="pr-tbl"><thead><tr><th>#</th><th>Mahadasha</th><th>Sign</th><th>Period</th><th>Start</th><th>End</th></tr></thead><tbody>`;
     data.forEach((md,i)=>{
       const cur=isNow(md.start,md.end);
       const tc=ST2[(md.sign||0)%3].toLowerCase();
       html2+=`<tr class="${cur?'pr-cur':''}"><td>${i+1}</td>
         <td><strong>${esc(md.label||RF[md.sign])}</strong>${md.extra?'<br><span style="font-size:9px;color:#94a3b8">'+esc(md.extra)+'</span>':''}</td>
         <td><span class="pr-sp-${tc} pr-sp-m">${RS[md.sign]}</span></td>
-        <td>${typeof md.years==='number'?md.years.toFixed(2):md.years}</td>
+        <td>${fmtDurYM(md.years)}</td>
         <td style="white-space:nowrap">${fmtDate(md.start)}</td>
         <td style="white-space:nowrap">${fmtDate(md.end)}</td></tr>`;
       // Print antardashas inline if present
@@ -2688,11 +3080,11 @@ function doPrint(){
         md.antardashas.forEach(a=>{
           const ca=isNow(a.start,a.end);
           const atc=ST2[(a.sign||0)%3].toLowerCase();
-          html2+=`<tr style="background:#f8faff;${ca?'font-weight:700;color:#1e40af':''}">
+          html2+=`<tr style="background:var(--bg2);${ca?'font-weight:700;color:#1e40af':''}">
             <td style="padding-left:16px;color:#94a3b8">↳</td>
             <td style="padding-left:4px">${esc(a.label)}</td>
             <td><span class="pr-sp-${atc} pr-sp-m">${RS[a.sign]}</span></td>
-            <td>${a.dur?a.dur.toFixed(2):''}</td>
+            <td>${a.dur?fmtDurYM(a.dur):''}</td>
             <td style="white-space:nowrap">${fmtDate(a.start)}</td>
             <td style="white-space:nowrap">${fmtDate(a.end)}</td></tr>`;
         });
@@ -2730,15 +3122,34 @@ function saveSettings(){
   appSettings.contact   =(document.getElementById('s-contact')||{value:''}).value.trim();
   try{localStorage.setItem('astrogaami_settings',JSON.stringify(appSettings));}catch(e){}
 }
+// Extract Name and DOB from a pasted JHora export (Date: line, and Windows/Unix path name)
+function parseJhoraMeta(text){
+  const meta={};
+  const MON={jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+  const dm=text.match(/Date:\s*([A-Za-z]{3,})\s+(\d{1,2}),?\s+(\d{4})/i);
+  if(dm){ const mo=MON[dm[1].slice(0,3).toLowerCase()];
+    if(mo) meta.dob=dm[3]+'-'+String(mo).padStart(2,'0')+'-'+String(+dm[2]).padStart(2,'0'); }
+  // Name: explicit "Name:" line, else the segment JHora writes after its data folder: "…\Jhora\<name>"
+  // (handles .jhd/.txt/.hor extensions, " - " / newline / end terminators, and underscores → spaces)
+  const nmLine=text.match(/^\s*Name:\s*(.+)/mi);
+  if(nmLine){ meta.name=nmLine[1].trim(); }
+  else{
+    const nm=text.match(/[Jj]hora[\\\/]([A-Za-z][\w .'-]*?)(?:\.(?:jhd|txt|hor))?(?:\s+-\s+|[\r\n]|$)/);
+    if(nm&&nm[1]){ const v=nm[1].trim().replace(/_+/g,' ').replace(/\s+/g,' '); if(v.length>1&&!/^\d+$/.test(v)) meta.name=v; }
+  }
+  return meta;
+}
+function loadSampleData(){
+  document.getElementById('m-jhora').value=SAMPLE;
+  const meta=parseJhoraMeta(SAMPLE);
+  document.getElementById('m-name').value=meta.name||'Sample';
+  if(typeof livePreview==='function') livePreview();
+}
 function openSettings(){document.getElementById('settings-modal').classList.add('open');}
 function closeSettings(){document.getElementById('settings-modal').classList.remove('open');}
 
 (function(){
-  const c={id:Date.now()+Math.random(),name:'Sample',dob:'1985-05-15',jhora:SAMPLE,
-    karakaMethod:'deg',numKarakas:7,charaDir:'standard',ownSignPeriod:12,dashaChart:'D1',computed:null};
-  charts.push(c);
-  computeChart(c);
-  activeChart=c.id;
+  // Start empty — add a chart from "+ Chart" (its popup has a "Load sample" button)
   renderAll();
 })();
 </script>
